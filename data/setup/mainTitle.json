@@ -1,0 +1,20 @@
+{
+	"type" : "TitleScene",
+	"id" : "mainTitle",
+	"texts" : [
+		{
+			"styleid" : "subtitle",
+			"text" : "Click anywhere to start!",
+		}
+	],
+	"shapes" : [
+		{
+			"source" : "logo1.svg",
+			"posX" : "200",
+			"posY" : "0",
+			"width" : "width-500",
+			"height" : "550",
+		}
+	],
+	"onclick" : "page1"
+}

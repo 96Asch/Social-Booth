@@ -1,0 +1,46 @@
+{
+	"type" : "TitleScene",
+	"id" : "page2",
+	"texts" : [
+	{
+		"styleid" : "title",
+		"text" : "How would you describe yourself?",
+	},
+	{
+		"styleid" : "body",
+		"text" : "Enter values here"
+	}],
+	"buttons" : [
+	{
+		"styleid" : "advbutton",
+		"positionid" : "continue",
+		"text" : "Continue",
+		"onclick" : "mainTitle"
+	},
+	{
+		"styleid" : "advbutton",
+		"positionid" : "previous",
+		"text" : "Previous",
+		"onclick" : "page1"
+	}],
+	"scales" : [
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 1",
+			"number" : 10,
+			"posY" : "400",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 2",
+			"number" : 5,
+			"posY" : "500",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 3",
+			"number" : 5,
+			"posY" : "600",
+		}
+	]
+}

@@ -1,0 +1,9 @@
+# main style config (.json)
+
+styling.json
+
+# screen configs (.json)
+
+mainTitle.json
+page1.json
+page2.json

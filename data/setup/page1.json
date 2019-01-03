@@ -1,0 +1,22 @@
+{
+	"type" : "TitleScene",
+	"id" : "page1",
+	"texts" : [
+		{
+			"styleid" : "title",
+			"text" : "Social Booth",
+		},
+		{
+			"styleid" : "body",
+			"text" : "Welcome to Social Booth, \n\nSocial Booth is part of a social experiment where we try to encourage social interaction through fun activities. By using facial recognition we will measure common traits between you and your conversation partner. \n\nAll collected data will be discarded at the end. \n\nBut first, tell us a little bit about yourself...",
+		}
+	],
+	"buttons" : [
+		{
+			"styleid" : "advbutton",
+			"positionid" : "continue",
+			"text" : "Continue",
+			"onclick" : "page2"
+		},
+	]
+}

@@ -1,0 +1,109 @@
+
+{
+	"bg" : "lowpoly.png",
+
+	"advbutton" : {
+		"width" : "200",
+		"height" : "50",
+		"fontsize" : 30,
+		"alignX" : "left",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf",
+		"continue" : {
+			"posX" : "width-300",
+			"posY" : "height-150",
+		},
+		"previous" : {
+			"posX" : "100",
+			"posY" : "height-150",
+		},
+		"offset" : {
+			"offsetX" : 5,
+			"offsetY" : 5,
+			"offsetW" : 5,
+			"offsetH" : 5
+		}
+	},
+
+	"title" : {
+		"posX" : "100",
+		"posY" : "70",
+		"width" : "width-500",
+		"height" : "100",
+		"fontsize" : 65,
+		"offset" : {
+			"offsetX" : 0,
+			"offsetY" : -20,
+			"offsetW" : 5,
+			"offsetH" : 5
+		},
+		"alignX" : "center",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf"
+	},
+
+	"body" : {
+		"posX" : "100",
+		"posY" : "300",
+		"width" : "width-300",
+		"height" : "500",
+		"fontsize" : 29,
+		"offset" : {
+			"offsetX" : 220,
+			"offsetY" : 30,
+			"offsetW" : 320,
+			"offsetH" : 0
+		},
+		"alignX" : "left",
+		"alignY" : "baseline",
+		"font" : "HighlandGothicLightFLF.ttf"
+	},
+
+	"subtitle" : {
+		"posX" : "100",
+		"posY" : "600",
+		"width" : "width-300",
+		"height" : "500",
+		"fontsize" : 50,
+		"offset" : {
+			"offsetX" : 0,
+			"offsetY" : 65,
+			"offsetW" : 0,
+			"offsetH" : 0
+		},
+		"alignX" : "center",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf"
+	},
+
+	"label" : {
+		"posX" : "0",
+		"posY" : "0",
+		"width" : "200",
+		"height" : "100",
+		"fontsize" : 30,
+		"offset" : {
+			"offsetX" : 0,
+			"offsetY" : 0,
+			"offsetW" : 0,
+			"offsetH" : 0
+		},
+		"alignX" : "center",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf"
+	},
+
+
+	"centerScale" : {
+		"posX" : "250",
+		"posY" : "600",
+		"width" : "width/2-200",
+		"height" : "50",
+		"descFontSize" : 25,
+		"descFont" : "HighlandGothicLightFLF.ttf",
+		"barFontSize" : 20,
+		"barFont" : "HighlandGothicLightFLF.ttf",
+		"descWidth" : "500",
+		"descHeight" : "150"
+	}
+}
