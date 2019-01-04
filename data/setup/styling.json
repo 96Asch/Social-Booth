@@ -26,8 +26,8 @@
 	},
 
 	"title" : {
-		"posX" : "100",
-		"posY" : "70",
+		"posX" : "width/20",
+		"posY" : "height/10",
 		"width" : "width-500",
 		"height" : "100",
 		"fontsize" : 65,
@@ -43,10 +43,10 @@
 	},
 
 	"body" : {
-		"posX" : "100",
-		"posY" : "300",
+		"posX" : "width/20",
+		"posY" : "height/5",
 		"width" : "width-300",
-		"height" : "500",
+		"height" : "height/1.5",
 		"fontsize" : 29,
 		"offset" : {
 			"offsetX" : 220,
