@@ -502,10 +502,10 @@ class SceneFactory {
   private int convertMeasurement(String measurement) {
     measurement.replaceAll("\\s+", "");
     String[] split = measurement.split("(?=[/*+-])|(?<=[/*+-])"); 
-    int result = strToInt(split[0]);
+    float result = strToFloat(split[0]);
     for (int i = 1; i < split.length; i += 2) {
       String operator = split[i];
-      int operand = strToInt(split[i+1]);
+      float operand = strToFloat(split[i+1]);
       switch(operator) {
       case "*":
         result *= operand;
@@ -523,17 +523,17 @@ class SceneFactory {
         continue;
       }
     }
-    return result;
+    return int(result);
   }
 
-  private int strToInt(String str) {
+  private float strToFloat(String str) {
     switch(str) {
     case "height":
       return height;
     case "width":
       return width;
     default:
-      return Integer.parseInt(str);
+      return Float.parseFloat(str);
     }
   }
 
