@@ -2,12 +2,14 @@ public static final int OFFSET = 50;
 public static final float STROKE_R = 255;
 public static final float STROKE_G = 255;
 public static final float STROKE_B = 255;
+
 public static final int STROKE_WEIGHT = 7;
 public static final float OPACITY = 160;
 public static final float SELECTED_R = 255;
 public static final float SELECTED_G = 218;
 public static final float SELECTED_B = 3;
 public static final float FILL_COLOR = 0;
+public static final float TEXT_COLOR = 255;
 
 PShape dialog, title, subtitle;
 
@@ -17,16 +19,16 @@ public void drawBox(int x, int y, int w, int h, int offset) {
   stroke(STROKE_R, STROKE_G, STROKE_B);
   quad(x+offset, y, x, y+h, x+w, y+h, x+w+offset, y); 
   noStroke();
-  noFill();
+  fill(TEXT_COLOR);
 }
 
-public void drawBox(int x, int y, int w, int h, int offset, float opacity) {
-  fill(FILL_COLOR, opacity);
+public void drawBoxOnHover(int x, int y, int w, int h, int offset) {
+  fill(SELECTED_R, SELECTED_G, SELECTED_B, OPACITY);
   strokeWeight(STROKE_WEIGHT);
   stroke(STROKE_R, STROKE_G, STROKE_B);
   quad(x+offset, y, x, y+h, x+w, y+h, x+w+offset, y); 
   noStroke();
-  noFill();
+  fill(FILL_COLOR);
 }
 
 public void drawDialog(int x, int y, int w, int h) {
@@ -38,6 +40,7 @@ public void drawDialog(int x, int y, int w, int h) {
   noStroke();
   noFill();
   dialog.enableStyle();
+  fill(TEXT_COLOR);
 }
 
 public void drawTitle(int x, int y, int w, int h) {
@@ -49,6 +52,7 @@ public void drawTitle(int x, int y, int w, int h) {
   noStroke();
   noFill();
   title.enableStyle();
+  fill(TEXT_COLOR);
 }
 
 public void drawSubtitle(int x, int y, int w, int h) {
@@ -60,6 +64,7 @@ public void drawSubtitle(int x, int y, int w, int h) {
   noStroke();
   noFill();
   subtitle.enableStyle();
+  fill(TEXT_COLOR);
 }
 
 

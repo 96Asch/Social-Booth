@@ -15,7 +15,7 @@
 		"styleid" : "advbutton",
 		"positionid" : "continue",
 		"text" : "Continue",
-		"onclick" : "mainTitle"
+		"onclick" : "scaleGather-mainTitle"
 	},
 	{
 		"styleid" : "advbutton",
@@ -28,19 +28,19 @@
 			"styleid" : "centerScale",
 			"descript" : "Attribute 1",
 			"number" : 10,
-			"posY" : "400",
+			"posY" : "height/2-300",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Attribute 2",
 			"number" : 5,
-			"posY" : "500",
+			"posY" : "height/2-100",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Attribute 3",
 			"number" : 5,
-			"posY" : "600",
+			"posY" : "height/2+100",
 		}
 	]
 }

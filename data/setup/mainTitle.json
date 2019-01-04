@@ -9,11 +9,11 @@
 	],
 	"shapes" : [
 		{
-			"source" : "logo1.svg",
-			"posX" : "200",
+			"source" : "logo.svg",
+			"posX" : "width/10",
 			"posY" : "0",
-			"width" : "width-500",
-			"height" : "550",
+			"width" : "width/1.1",
+			"height" : "height/2",
 		}
 	],
 	"onclick" : "page1"

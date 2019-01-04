@@ -41,7 +41,7 @@ class SceneFactory {
     //Hover styling for the advance buttons
     style.getAdvButton().setHover(new HoverEvent() {
       public void onHover(int x, int y, int w, int h) {
-        drawBox(x, y, w, h, -20, 255);
+        drawBoxOnHover(x, y, w, h, -20);
       }
     }
     );
@@ -160,7 +160,7 @@ class SceneFactory {
     if (json.isNull("barFont")) throw new JSONNotFoundException("{barFont} field not found in ScaleStyling");
     if (json.isNull("descWidth")) throw new JSONNotFoundException("{descWidth} field not found in ScaleStyling");
     if (json.isNull("descHeight")) throw new JSONNotFoundException("{descHeight} field not found in ScaleStyling");
-   
+
     parseDefaultPositionStyling(json, styling.getPosition());
     styling.setWidth(convertMeasurement(json.getString("width")));
     styling.setHeight(convertMeasurement(json.getString("height")));
@@ -349,6 +349,7 @@ class SceneFactory {
       String next = json.getString("onclick");
       scene.setOnClick(new ClickEvent(next) {
         public void onClick() {
+          data.setShouldPrepare(true);
           SceneManager.INSTANCE.setScene(id);
         }
       }
@@ -489,14 +490,34 @@ class SceneFactory {
   private ClickEvent createClickEvent(JSONObject json) {
     if (json.isNull("onclick")) throw new JSONNotFoundException("{onclick} field not found in button");
     String onclick = json.getString("onclick");
-    switch(onclick) {
-    default:
-      return new ClickEvent(onclick) {
-        public void onClick() {
-          SceneManager.INSTANCE.setScene(id);
-        }
-      };
+    String[] split = onclick.split("-");
+    if (split.length == 1) {
+      switch(onclick) {
+      default:
+        return new ClickEvent(onclick) {
+          public void onClick() {
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      }
+    } else if (split.length == 2) {
+      switch(split[0]) {
+      case "scaleGather" :
+        return new ClickEvent(split[1]) {
+          public void onClick() {
+            data.setShouldGather(true);
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      default:
+        return new ClickEvent(split[1]) {
+          public void onClick() {
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      }
     }
+    return null;
   }
 
   private int convertMeasurement(String measurement) {

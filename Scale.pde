@@ -1,8 +1,8 @@
 // Very Hard-Coded (Thanks Processing for not having lambdas)
-public class Scale extends Node {
+public class Scale extends Node implements IDatafiable {
 
   private final static int SPACING = 30;
-  
+
   private int number = 0;
   private int value = -1;
   private int unitWidth, descWidth, descHeight;
@@ -96,13 +96,13 @@ public class Scale extends Node {
   public void setDescWidth(int _x) {
     descWidth = _x;
   }
-  
+
   public void setDescHeight(int _h) {
     descHeight = _h;
   }
-  
+
   public String getDescription() {
-    return description;  
+    return description;
   }
 
   public void setDescription(String _description) {
@@ -140,10 +140,19 @@ public class Scale extends Node {
   }
 
   @Override
+    public String getId() {
+    return getDescription();
+  }
+
+  @Override
+    public int getData() {
+    return getValue();
+  }
+
+  @Override
     public void setWidth(int _width) {
     super.setWidth(_width);
     if (number > 0) {
-      print("0");
       unitWidth = w / number;
     }
   }

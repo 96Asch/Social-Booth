@@ -3,19 +3,19 @@
 	"bg" : "lowpoly.png",
 
 	"advbutton" : {
-		"width" : "200",
-		"height" : "50",
+		"width" : "width/5",
+		"height" : "height/20",
 		"fontsize" : 30,
 		"alignX" : "left",
 		"alignY" : "center",
 		"font" : "HighlandGothicLightFLF.ttf",
 		"continue" : {
-			"posX" : "width-300",
-			"posY" : "height-150",
+			"posX" : "width/1.3",
+			"posY" : "height/1.1",
 		},
 		"previous" : {
-			"posX" : "100",
-			"posY" : "height-150",
+			"posX" : "width/20",
+			"posY" : "height/1.1",
 		},
 		"offset" : {
 			"offsetX" : 5,
@@ -29,7 +29,7 @@
 		"posX" : "width/20",
 		"posY" : "height/10",
 		"width" : "width-500",
-		"height" : "100",
+		"height" : "height/20",
 		"fontsize" : 65,
 		"offset" : {
 			"offsetX" : 0,
@@ -46,13 +46,13 @@
 		"posX" : "width/20",
 		"posY" : "height/5",
 		"width" : "width-300",
-		"height" : "height/1.5",
+		"height" : "height/1.7",
 		"fontsize" : 29,
 		"offset" : {
-			"offsetX" : 220,
-			"offsetY" : 30,
-			"offsetW" : 320,
-			"offsetH" : 0
+			"offsetX" : 320,
+			"offsetY" : 120,
+			"offsetW" : 620,
+			"offsetH" : 100
 		},
 		"alignX" : "left",
 		"alignY" : "baseline",
@@ -60,10 +60,10 @@
 	},
 
 	"subtitle" : {
-		"posX" : "100",
-		"posY" : "600",
-		"width" : "width-300",
-		"height" : "500",
+		"posX" : "width/20",
+		"posY" : "height/2",
+		"width" : "width/1.1",
+		"height" : "height/3",
 		"fontsize" : 50,
 		"offset" : {
 			"offsetX" : 0,
@@ -95,10 +95,10 @@
 
 
 	"centerScale" : {
-		"posX" : "250",
-		"posY" : "600",
-		"width" : "width/2-200",
-		"height" : "50",
+		"posX" : "width/5",
+		"posY" : "height/2",
+		"width" : "width/2.5",
+		"height" : "100",
 		"descFontSize" : 25,
 		"descFont" : "HighlandGothicLightFLF.ttf",
 		"barFontSize" : 20,

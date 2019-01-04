@@ -1,19 +1,24 @@
 class Scene extends BaseScene {
 
   private ArrayList<Node> nodes;
+  private ArrayList<IDatafiable> dataNodes;
   private ClickEvent click;
-  private TableRow dataRow;
-  private boolean dataPrepared = false, dataGathered = false;
+  private boolean isDataPrepared;
 
   public Scene(String id) {
     super(id);           
     nodes = new ArrayList();
+    dataNodes = new ArrayList();
     click = null;
+    isDataPrepared = false;
   }
 
   public void setup() {
     println("Scene: " + getId());
-    prepareData();
+    isDataPrepared = data.prepare(dataNodes, isDataPrepared);
+    println("dsfsfsfsfsfs");
+    println("AFTER: " + isDataPrepared);
+    println();
   }
 
   @Override
@@ -33,12 +38,8 @@ class Scene extends BaseScene {
   public void addNode(Node node) {
     if (node != null) {
       nodes.add(node);
-    }
-  }
-
-  public void removeText(int i) {
-    if (0 <= i && i < nodes.size()) {
-      nodes.remove(i);
+      if(node instanceof IDatafiable)
+        dataNodes.add((IDatafiable) node);
     }
   }
 
@@ -46,29 +47,6 @@ class Scene extends BaseScene {
     click = _click;
   }
 
-  public void gatherData() {
-    if (dataGathered) return;
-    
-    for (int i = 0; i < nodes.size(); ++i) {
-      if (nodes.get(i) instanceof Scale) {
-        Scale scale = (Scale) nodes.get(i); print(scale.getValue());
-        dataRow.setInt(scale.getDescription(), scale.getValue());
-      }
-    }
-    dataGathered = true;
-  }
-
-  private void prepareData() {
-    if (dataPrepared) return;
-    for (int i = 0; i < nodes.size(); ++i) {
-      if (nodes.get(i) instanceof Scale) {
-        Scale scale = (Scale) nodes.get(i); 
-        data.getTable().addColumn(scale.getDescription());
-      }
-    }
-    dataRow = data.getTable().addRow();
-    dataPrepared = true;
-  }
 
   @Override
     public void onMouseClicked() {
@@ -77,7 +55,7 @@ class Scene extends BaseScene {
     for (int i = 0; i < nodes.size(); ++i) {
       if (nodes.get(i) instanceof Button) {
         ((Button) nodes.get(i)).onClick();
-        gatherData();
+        data.gather(dataNodes);
       } else if (nodes.get(i) instanceof Scale) {
         ((Scale) nodes.get(i)).onClick();
       }

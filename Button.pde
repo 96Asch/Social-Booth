@@ -25,7 +25,6 @@ class Button extends Node{
      if(!text.isEmpty()) {
         if(font != null)
           textFont(font);
-       fill(255);
        textAlign(alignX, alignY);
        text(text, x+offset.getOffsetX(), y+offset.getOffsetY(), w-offset.getOffsetW(), h-offset.getOffsetH());  
        textAlign(LEFT, BASELINE);
