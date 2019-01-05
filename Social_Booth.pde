@@ -1,10 +1,11 @@
-String DEFAULT_SCENE = "mainTitle";
+String DEFAULT_SCENE = "topicGame";
 SceneManager manager;
 SceneFactory factory;
 DataGather data;
 
+
 void setup() {
-  fullScreen();
+  size(1080, 720);
   manager = SceneManager.INSTANCE;
   factory = new SceneFactory();
   manager.setFps(60);

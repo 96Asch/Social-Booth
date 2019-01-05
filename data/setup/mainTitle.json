@@ -3,15 +3,15 @@
 	"texts" : [
 		{
 			"styleid" : "subtitle",
-			"text" : "Click anywhere to start!",
+			"text" : "Click to start",
 		}
 	],
 	"shapes" : [
 		{
 			"source" : "logo.svg",
-			"posX" : "width/10",
+			"posX" : "0",
 			"posY" : "0",
-			"width" : "width/1.1",
+			"width" : "width/1",
 			"height" : "height/2",
 		}
 	],

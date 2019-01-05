@@ -117,6 +117,7 @@ class SceneFactory {
     parseTextStyling(json.getJSONObject("subtitle"), style.getSubtitle());
     parseScaleStyling(json.getJSONObject("centerScale"), style.getScale());
     parseTimer(json.getJSONObject("mainTimer"));
+    parseTimerBar(json.getJSONObject("gameTimerBar"), style.getTimerBar());
   }
 
   private void parseAdvButtonStyling(JSONObject json, ButtonStyling styling) {
@@ -190,10 +191,23 @@ class SceneFactory {
     style.setTimer(timer);
   }
 
+  private void parseTimerBar(JSONObject json, TimerBarStyling styling) {
+    if (json == null) throw new JSONNotFoundException("json was null in parseTimerBar");
+    parseDefaultPositionStyling(json, styling.getPosition());
+    parseDefaultDimensionStyling(json, styling);
+  }
+
+  private void parseDefaultDimensionStyling(JSONObject json, NodeStyling styling) {
+    if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in styling");
+    if (json.isNull("height")) throw new JSONNotFoundException("{height} field not found in styling");
+    styling.setWidth(convertMeasurement(json.getString("width")));
+    styling.setHeight(convertMeasurement(json.getString("height")));
+  }
+
   private void parseDefaultPositionStyling(JSONObject json, PositionStyling styling) {
     if (json == null) throw new JSONNotFoundException("json was null in positionStyling");
-    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in advButtonStyling");
-    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in advButtonStyling");
+    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in styling");
+    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in styling");
     styling.setPosX(convertMeasurement(json.getString("posX")));
     styling.setPosY(convertMeasurement(json.getString("posY")));
   }
@@ -319,7 +333,6 @@ class SceneFactory {
 
   private void setTimerToDefault(JSONObject json, Timer timer) {
     if (!json.isNull("styleid")) {
-      print("hello");
       String styleid = json.getString("styleid");
       Timer t;
       switch(styleid) {
@@ -331,6 +344,24 @@ class SceneFactory {
       }
       timer.setDuration(t.getDuration());
       timer.setEvent(t.getEvent());
+    }
+  }
+
+  private void setTimerBarToDefault(JSONObject json, TimerBar timerbar) {
+    if (!json.isNull("styleid")) {
+      String styleid = json.getString("styleid");
+      TimerBarStyling t;
+      switch(styleid) {
+      case "gameTimerBar":
+        t = style.getTimerBar();
+        break;
+      default:
+        return;
+      }
+      timerbar.setPosX(t.getPosition().getPosX());
+      timerbar.setPosY(t.getPosition().getPosY());
+      timerbar.setWidth(t.getWidth());
+      timerbar.setHeight(t.getHeight());
     }
   }
 
@@ -383,6 +414,19 @@ class SceneFactory {
 
     if (!json.isNull("timer")) {
       scene.setTimer(createTimer(json.getJSONObject("timer")));
+    }
+
+    if (!json.isNull("timerBar")) {
+      TimerBar tBar = createTimerBar(json.getJSONObject("timerBar"));
+      tBar.setTimer(scene.getTimer());
+      scene.addNode(tBar);
+    }
+
+    if (!json.isNull("topicGame")) {
+      JSONArray topics = json.getJSONArray("topicGame");
+      for (int i = 0; i < topics.size(); ++i) {
+        scene.addNode(createTopicGame(topics.getJSONObject(i)));
+      }
     }
 
     if (!json.isNull("onclick")) {
@@ -476,7 +520,6 @@ class SceneFactory {
   private Scale createScale(JSONObject json) {
     if (json == null) throw new JSONNotFoundException("json was null in createScale");
     if (json.isNull("number")) throw new JSONNotFoundException("{number} field not found in ScaleStyling"); 
-    print(json.getInt("number"));
     Scale scale = new Scale(json.getInt("number"), 0, 0, 0, 0);
     setScaleToDefault(json, scale);
 
@@ -502,13 +545,51 @@ class SceneFactory {
     if (json == null) throw new JSONNotFoundException("json was null in createTimer");
     Timer timer = new Timer();
     setTimerToDefault(json, timer);
-    print(json);
     if (!json.isNull("duration")) {
       timer.setDuration(convertTimeToMillis(json.getString("duration")));
     }
     if (!json.isNull("onTimer"))
       timer.setEvent(createTimerEvent(json.getString("onTimer")));
     return timer;
+  }
+
+  private TimerBar createTimerBar(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createTimer");
+    TimerBar timerbar = new TimerBar(0, 0, 0, 0);
+    setTimerBarToDefault(json, timerbar);
+    if (!json.isNull("posX"))
+      timerbar.setPosX(convertMeasurement(json.getString("posX")));
+    if (!json.isNull("posY"))
+      timerbar.setPosY(convertMeasurement(json.getString("posY")));
+    if (!json.isNull("width"))
+      timerbar.setWidth(convertMeasurement(json.getString("width")));
+    if (!json.isNull("height"))
+      timerbar.setHeight(convertMeasurement(json.getString("height")));
+    return timerbar;
+  }
+
+  private TopicGame createTopicGame(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createTopicGame");
+    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in styling");
+    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in styling");
+    if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in styling");
+    if (json.isNull("height")) throw new JSONNotFoundException("{height} field not found in styling");
+    if (json.isNull("bg")) throw new JSONNotFoundException("{bg} field not found in styling");
+    if (json.isNull("file")) throw new JSONNotFoundException("{file} field not found in styling");
+    TopicGame t = new TopicGame(0, 0, 0, 0);
+    t.setPosX(convertMeasurement(json.getString("posX")));   
+    t.setPosY(convertMeasurement(json.getString("posY")));   
+    t.setWidth(convertMeasurement(json.getString("width")));   
+    t.setHeight(convertMeasurement(json.getString("height")));  
+    t.setBg(json.getString("bg"));
+    t.setTopicsFile(json.getString("file"));
+    setOffset(json.getJSONObject("offset"), t);
+    if (!json.isNull("fontsize"))
+      t.setFontSize(json.getInt("fontsize"));
+    if (!json.isNull("font")) {
+      t.setFont(json.getString("font"));
+    }
+    return t;
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -526,6 +607,18 @@ class SceneFactory {
       button.getOffset().setOffsetW(json.getInt("offsetW"));
     if (!json.isNull("offsetH"))
       button.getOffset().setOffsetH(json.getInt("offsetH"));
+  }
+
+  private void setOffset(JSONObject json, TopicGame game) {
+    if (json == null) throw new JSONNotFoundException("json was null in setOffset");
+    if (!json.isNull("offsetX"))
+      game.getOffset().setOffsetX(json.getInt("offsetX"));
+    if (!json.isNull("offsetY"))
+      game.getOffset().setOffsetY(json.getInt("offsetY"));
+    if (!json.isNull("offsetW"))
+      game.getOffset().setOffsetW(json.getInt("offsetW"));
+    if (!json.isNull("offsetH"))
+      game.getOffset().setOffsetH(json.getInt("offsetH"));
   }
 
   private void setOffset(JSONObject json, TextBody text) {

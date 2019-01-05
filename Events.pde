@@ -26,6 +26,10 @@ abstract class HoverEvent {
   public abstract void onHover(int x, int y, int w, int h);
 }
 
+public interface Initializable {
+  public abstract void onInit(); 
+}
+
 public class Timer {
 
   private int currentT;
@@ -46,6 +50,7 @@ public class Timer {
     if (currentT >= end && !sounded) {
       if (event != null) {
         event.onTimeUp();
+        stop();
       }
       sounded = true;
     }
@@ -57,6 +62,14 @@ public class Timer {
 
   public void setEvent(TimerEvent _event) {
     event = _event;
+  }
+  
+  public int getCurrentT() {
+    return currentT;  
+  }
+  
+  public int getEndT() {
+    return end;  
   }
 
   public int getDuration() {

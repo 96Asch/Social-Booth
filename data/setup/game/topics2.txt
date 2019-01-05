@@ -1,0 +1,103 @@
+# Topics each on a separate line
+chess
+matches
+toads
+cobblers
+weaving
+accordions
+submarines
+cycling
+oil
+buffaloes
+hammocks
+pineapple
+goats
+dentistry
+potatoes
+music
+stadiums
+drugstores
+frogs
+billiards
+masonry
+books
+marionettes
+airports
+vanilla
+Disney movies
+skating
+foxes
+prisons
+Europe
+cheese
+tigers
+mules
+motherhood
+bakeries
+fortune tellers
+movie theaters
+Africa
+railroads
+turtles
+cards
+water skiing
+lions
+army
+bears
+tobacco
+crime
+cotton
+money
+zebras
+politics
+military
+diving
+barbers
+tattoos
+Red Cross
+athletics
+golf
+cows
+Native Americans
+coins
+caves
+vaccines
+hippopotamus
+pipe organs
+North Africa
+tanning
+rice
+circus
+banking
+puppets
+Buddhism
+bananas
+sailing
+seashells
+dolphins
+rabbits
+diamond
+South America
+giraffes
+birds
+earthquake
+monkeys
+insects
+Central America
+milk
+cigarettes
+swings
+freaks
+meteorology
+journalism
+games
+astronomy
+pipes
+death
+firemen
+radiology
+spiritism
+boats
+coffee
+bread
+bats

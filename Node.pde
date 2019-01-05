@@ -1,5 +1,5 @@
 class Node {
-
+  
   protected int x, y;
   protected int w, h;
   protected boolean inBounds;

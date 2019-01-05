@@ -1,5 +1,5 @@
 {
-	"id" : "page3",
+	"id" : "page4",
 	"timer" : {
 		"styleid" : "mainTimer",
 		"duration" : "20"
@@ -7,23 +7,23 @@
 	"texts" : [
 	{
 		"styleid" : "title",
-		"text" : "Adjusting camera",
+		"text" : "Rules of the Game",
 	},
 	{
 		"styleid" : "body",
-		"text" : "Adjusting camera... \nPlease stand in front of the camera"
+		"text" : "Some quick rules before you start... \n\nEvery round you will receive an activity that you may complete within the time frame. Both players take turns doing that activity."
 	}],
 	"buttons" : [
 	{
 		"styleid" : "advbutton",
 		"positionid" : "continue",
 		"text" : "Continue",
-		"onclick" : "page4"
+		"onclick" : "topicGame"
 	},
 	{
 		"styleid" : "advbutton",
 		"positionid" : "previous",
 		"text" : "Previous",
-		"onclick" : "page2"
+		"onclick" : "page1"
 	}],
 }

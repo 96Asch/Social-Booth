@@ -1,16 +1,18 @@
-public enum SceneManager {
+public enum SceneManager { //<>//
   INSTANCE;
 
   private HashMap<String, BaseScene> scenes;
   private String current;
   private int sceneFrameCount;
   private int fps;
+  private boolean changeScene;
 
   private SceneManager() {
     scenes = new HashMap();
     current = null;
     sceneFrameCount = 0;
     fps = 0;
+    changeScene = false;
   }
 
   public void addScene(BaseScene _scene) {
@@ -27,8 +29,10 @@ public enum SceneManager {
 
   public void setScene(String _id) {
     if (_id != null && scenes.containsKey(_id)) {
+      print("setScene");
       current = _id;
       sceneFrameCount = 0;
+      changeScene = true;
     } else {
       throw new SceneNotFoundException("Scene not found!");
     }
@@ -63,11 +67,13 @@ public enum SceneManager {
   public void manageDraw() {
     if (sceneFrameCount == 0) {
       getCurrentScene().setup();
+      changeScene = false;
     } else {
       getCurrentScene().update();
       getCurrentScene().draw();
     }
-    ++sceneFrameCount;
+    if (!changeScene)
+      ++sceneFrameCount;
   }
 
   class SceneNotFoundException extends RuntimeException {

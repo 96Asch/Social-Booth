@@ -5,6 +5,7 @@ class DefaultStyling {
   private ButtonStyling button;
   private ScaleStyling scale;
   private Timer timer;
+  private TimerBarStyling timerBar;
 
   DefaultStyling() {
     title = new TextStyling();
@@ -12,6 +13,7 @@ class DefaultStyling {
     subtitle = new TextStyling();
     button = new ButtonStyling();
     scale = new ScaleStyling();
+    timerBar = new TimerBarStyling();
   }
 
   public TextStyling getTitle() {
@@ -32,6 +34,10 @@ class DefaultStyling {
 
   public ScaleStyling getScale() {
     return scale;
+  }
+
+  public TimerBarStyling getTimerBar() {
+    return timerBar;
   }
 
   public void setTimer(Timer _timer) {
@@ -137,6 +143,12 @@ private class TextStyling extends NodeStyling {
 
   public OffsetStyling getOffset() {
     return offset;
+  }
+}
+
+private class TimerBarStyling extends NodeStyling {
+  public TimerBarStyling() {
+    super();
   }
 }
 

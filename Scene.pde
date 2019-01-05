@@ -17,8 +17,13 @@ class Scene extends BaseScene {
   public void setup() {
     println("Scene: " + getId());
     isDataPrepared = data.prepare(dataNodes, isDataPrepared);
-    if(timer != null)
+    if (timer != null)
       timer.start();
+    for (Node node : nodes) {
+      if(node instanceof Initializable) {
+        ((Initializable) node).onInit();
+      }
+    }
   }
 
   @Override
@@ -47,6 +52,10 @@ class Scene extends BaseScene {
 
   public void setOnClick(ClickEvent _click) {
     click = _click;
+  }
+
+  public Timer getTimer() {
+    return timer;
   }
 
   public void setTimer(Timer _timer) {

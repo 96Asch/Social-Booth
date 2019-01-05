@@ -4,9 +4,9 @@
 
 	"advbutton" : {
 		"width" : "width/5",
-		"height" : "height/20",
-		"fontsize" : 30,
-		"alignX" : "left",
+		"height" : "height/15",
+		"fontsize" : 25,
+		"alignX" : "center",
 		"alignY" : "center",
 		"font" : "HighlandGothicLightFLF.ttf",
 		"continue" : {
@@ -27,15 +27,15 @@
 
 	"title" : {
 		"posX" : "width/20",
-		"posY" : "height/10",
-		"width" : "width-500",
-		"height" : "height/20",
-		"fontsize" : 65,
+		"posY" : "height/20",
+		"width" : "width/1.2",
+		"height" : "height/12",
+		"fontsize" : 40,
 		"offset" : {
-			"offsetX" : 0,
+			"offsetX" : 30,
 			"offsetY" : -20,
-			"offsetW" : 5,
-			"offsetH" : 5
+			"offsetW" : 0,
+			"offsetH" : 0
 		},
 		"alignX" : "center",
 		"alignY" : "center",
@@ -43,16 +43,16 @@
 	},
 
 	"body" : {
-		"posX" : "width/20",
-		"posY" : "height/5",
-		"width" : "width-300",
-		"height" : "height/1.7",
-		"fontsize" : 29,
+		"posX" : "width/10",
+		"posY" : "height/4",
+		"width" : "width/1.1",
+		"height" : "height/2",
+		"fontsize" : 25,
 		"offset" : {
-			"offsetX" : 320,
-			"offsetY" : 120,
-			"offsetW" : 620,
-			"offsetH" : 100
+			"offsetX" : 90,
+			"offsetY" : 0,
+			"offsetW" : -170,
+			"offsetH" : 80
 		},
 		"alignX" : "left",
 		"alignY" : "baseline",
@@ -60,15 +60,15 @@
 	},
 
 	"subtitle" : {
-		"posX" : "width/20",
+		"posX" : "0",
 		"posY" : "height/2",
-		"width" : "width/1.1",
-		"height" : "height/3",
+		"width" : "width",
+		"height" : "height/2",
 		"fontsize" : 50,
 		"offset" : {
 			"offsetX" : 0,
-			"offsetY" : 65,
-			"offsetW" : 0,
+			"offsetY" : 0,
+			"offsetW" : 20,
 			"offsetH" : 0
 		},
 		"alignX" : "center",
@@ -76,25 +76,15 @@
 		"font" : "HighlandGothicLightFLF.ttf"
 	},
 
-	"label" : {
-		"posX" : "0",
-		"posY" : "0",
-		"width" : "200",
-		"height" : "100",
-		"fontsize" : 30,
-		"offset" : {
-			"offsetX" : 0,
-			"offsetY" : 0,
-			"offsetW" : 0,
-			"offsetH" : 0
-		},
-		"alignX" : "center",
-		"alignY" : "center",
-		"font" : "HighlandGothicLightFLF.ttf"
+	"gameTimerBar" : {
+		"posX" : "width/13",
+		"posY" : "height/1.2",
+		"width" : "width/1.2",
+		"height" : "height/10"
 	},
 	
 	"mainTimer" : {
-		"duration" : "5",
+		"duration" : "10:00",
 		"onTimer" : "mainTitle"
 	},
 
@@ -102,13 +92,14 @@
 	"centerScale" : {
 		"posX" : "width/5",
 		"posY" : "height/2",
-		"width" : "width/2.5",
-		"height" : "100",
+		"width" : "width/2",
+		"height" : "50",
 		"descFontSize" : 25,
 		"descFont" : "HighlandGothicLightFLF.ttf",
 		"barFontSize" : 20,
 		"barFont" : "HighlandGothicLightFLF.ttf",
-		"descWidth" : "500",
+		"descWidth" : "width/8",
 		"descHeight" : "150"
-	}
+	},
+	
 }
