@@ -1,6 +1,8 @@
 {
-	"type" : "TitleScene",
 	"id" : "page1",
+	"timer" : {
+		"styleid" : "mainTimer"
+	},
 	"texts" : [
 		{
 			"styleid" : "title",
@@ -8,7 +10,7 @@
 		},
 		{
 			"styleid" : "body",
-			"text" : "Welcome to Social Booth, \n\nSocial Booth is part of a social experiment where we try to encourage social interaction through fun activities. By using facial recognition we will measure common traits between you and your conversation partner. \n\nAll collected data will be discarded at the end. \n\nBut first, tell us a little bit about yourself...",
+			"text" : "Welcome to Social Booth, \n\nSocial Booth is part of a social experiment where we try to encourage social interaction through fun activities. By using facial recognition we will measure common traits between you and your conversation partner. \n\nAll camera data will be discarded at the end. \n\nBut first, tell us a little bit about yourself...",
 		}
 	],
 	"buttons" : [

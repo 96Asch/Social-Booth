@@ -92,6 +92,11 @@
 		"alignY" : "center",
 		"font" : "HighlandGothicLightFLF.ttf"
 	},
+	
+	"mainTimer" : {
+		"duration" : "5",
+		"onTimer" : "mainTitle"
+	},
 
 
 	"centerScale" : {

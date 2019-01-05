@@ -45,6 +45,15 @@ class SceneFactory {
       }
     }
     );
+
+    Timer timer = new Timer();
+    timer.setEvent(new TimerEvent(DEFAULT_SCENE) {
+      public void onTimeUp() {
+        SceneManager.INSTANCE.setScene(id);
+      }
+    }
+    );
+    style.setTimer(timer);
   }
 
   public boolean createScenesFromDescription(String desc) {
@@ -107,6 +116,7 @@ class SceneFactory {
     parseTextStyling(json.getJSONObject("body"), style.getBody());
     parseTextStyling(json.getJSONObject("subtitle"), style.getSubtitle());
     parseScaleStyling(json.getJSONObject("centerScale"), style.getScale());
+    parseTimer(json.getJSONObject("mainTimer"));
   }
 
   private void parseAdvButtonStyling(JSONObject json, ButtonStyling styling) {
@@ -170,6 +180,14 @@ class SceneFactory {
     styling.setBarFont(json.getString("barFont"));
     styling.setDescWidth(convertMeasurement(json.getString("descWidth")));
     styling.setDescHeight(convertMeasurement(json.getString("descHeight")));
+  }
+
+  private void parseTimer(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in parseTimer");
+    if (json.isNull("duration")) throw new JSONNotFoundException("{duration} field not found in timer");
+    if (json.isNull("onTimer")) throw new JSONNotFoundException("{onTimer} field not found in timer");
+    Timer timer = buildTimer(json.getString("duration"), json.getString("onTimer"));
+    style.setTimer(timer);
   }
 
   private void parseDefaultPositionStyling(JSONObject json, PositionStyling styling) {
@@ -299,6 +317,23 @@ class SceneFactory {
     }
   }
 
+  private void setTimerToDefault(JSONObject json, Timer timer) {
+    if (!json.isNull("styleid")) {
+      print("hello");
+      String styleid = json.getString("styleid");
+      Timer t;
+      switch(styleid) {
+      case "mainTimer":
+        t = style.getTimer();
+        break;
+      default:
+        return;
+      }
+      timer.setDuration(t.getDuration());
+      timer.setEvent(t.getEvent());
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////// BUILDERS  ////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -343,6 +378,11 @@ class SceneFactory {
       for (int i = 0; i < scales.size(); ++i) {
         scene.addNode(createScale(scales.getJSONObject(i)));
       }
+    }
+
+
+    if (!json.isNull("timer")) {
+      scene.setTimer(createTimer(json.getJSONObject("timer")));
     }
 
     if (!json.isNull("onclick")) {
@@ -456,6 +496,19 @@ class SceneFactory {
       scale.setDescHeight(convertMeasurement(json.getString("descHeight")));
 
     return scale;
+  }
+
+  private Timer createTimer(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createTimer");
+    Timer timer = new Timer();
+    setTimerToDefault(json, timer);
+    print(json);
+    if (!json.isNull("duration")) {
+      timer.setDuration(convertTimeToMillis(json.getString("duration")));
+    }
+    if (!json.isNull("onTimer"))
+      timer.setEvent(createTimerEvent(json.getString("onTimer")));
+    return timer;
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -582,6 +635,38 @@ class SceneFactory {
       return BASELINE;
     }
   }
+}
+
+private Timer buildTimer(String duration, String onTimer) {
+  TimerEvent event = createTimerEvent(onTimer);
+  Timer timer = new Timer();
+  timer.setEvent(event);
+  timer.setDuration(convertTimeToMillis(duration));
+  return timer;
+}
+
+private TimerEvent createTimerEvent(String onTimer) {
+  switch(onTimer) {
+  default:
+    return new TimerEvent(onTimer) {
+      public void onTimeUp() {
+        SceneManager.INSTANCE.setScene(id);
+      }
+    };
+  }
+}
+
+private int convertTimeToMillis(String time) {
+  String[] split = time.split(":."); 
+  int mult[] = {1000, 60000, 360000};
+  int result = 0;
+  if (split.length <= 3) {
+    for (int i = 0; i < split.length; ++i) {
+      result += Integer.parseInt(split[(split.length - 1) - i]) * mult[i];
+    }
+    return result;
+  }
+  return -1;
 }
 
 public class JSONNotFoundException extends RuntimeException {

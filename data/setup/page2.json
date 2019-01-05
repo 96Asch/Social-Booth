@@ -1,6 +1,8 @@
 {
-	"type" : "TitleScene",
 	"id" : "page2",
+	"timer" : {
+		"styleid" : "mainTimer",
+	},
 	"texts" : [
 	{
 		"styleid" : "title",
@@ -27,20 +29,38 @@
 		{
 			"styleid" : "centerScale",
 			"descript" : "Attribute 1",
-			"number" : 10,
+			"number" : 5,
 			"posY" : "height/2-300",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Attribute 2",
 			"number" : 5,
-			"posY" : "height/2-100",
+			"posY" : "height/2-150",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Attribute 3",
 			"number" : 5,
-			"posY" : "height/2+100",
+			"posY" : "height/2",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 4",
+			"number" : 5,
+			"posY" : "height/2-150",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 5",
+			"number" : 5,
+			"posY" : "height/2+150",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Attribute 6",
+			"number" : 5,
+			"posY" : "height/2+300",
 		}
 	]
 }

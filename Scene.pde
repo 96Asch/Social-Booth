@@ -4,6 +4,7 @@ class Scene extends BaseScene {
   private ArrayList<IDatafiable> dataNodes;
   private ClickEvent click;
   private boolean isDataPrepared;
+  private Timer timer;
 
   public Scene(String id) {
     super(id);           
@@ -16,9 +17,8 @@ class Scene extends BaseScene {
   public void setup() {
     println("Scene: " + getId());
     isDataPrepared = data.prepare(dataNodes, isDataPrepared);
-    println("dsfsfsfsfsfs");
-    println("AFTER: " + isDataPrepared);
-    println();
+    if(timer != null)
+      timer.start();
   }
 
   @Override
@@ -26,6 +26,8 @@ class Scene extends BaseScene {
     for (int i = 0; i < nodes.size(); ++i) {
       nodes.get(i).update(mouseX, mouseY);
     }
+    if (timer != null)
+      timer.update();
   }
 
   public void draw() {
@@ -38,13 +40,17 @@ class Scene extends BaseScene {
   public void addNode(Node node) {
     if (node != null) {
       nodes.add(node);
-      if(node instanceof IDatafiable)
+      if (node instanceof IDatafiable)
         dataNodes.add((IDatafiable) node);
     }
   }
 
   public void setOnClick(ClickEvent _click) {
     click = _click;
+  }
+
+  public void setTimer(Timer _timer) {
+    timer = _timer;
   }
 
 

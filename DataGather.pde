@@ -18,12 +18,10 @@ public class DataGather {
   }
 
   public boolean prepare(List<IDatafiable> data, boolean isPrepared) {
-    println("prepare");
     boolean ret = isPrepared;
     if (shouldPrepare && !data.isEmpty()) {
       if (!isPrepared) {
         for (IDatafiable d : data) {
-          print(String.format("SET ID: %s, VAL: %d", d.getId(), d.getData()));
           table.addColumn(d.getId(), Table.INT);
         }
         ret = true;
@@ -35,11 +33,8 @@ public class DataGather {
   }
 
   public void gather(List<IDatafiable> data) {
-    println("gather");
     if (shouldGather && currentRow != null) {
-      println("fill in column headers");
       for (IDatafiable d : data) {
-        print(String.format("ID: %s, VAL: %d", d.getId(), d.getData()));
         currentRow.setInt(d.getId(), d.getData());
       }
       shouldGather = false;

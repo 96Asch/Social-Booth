@@ -4,6 +4,7 @@ class DefaultStyling {
   private TextStyling title, body, subtitle;
   private ButtonStyling button;
   private ScaleStyling scale;
+  private Timer timer;
 
   DefaultStyling() {
     title = new TextStyling();
@@ -31,6 +32,14 @@ class DefaultStyling {
 
   public ScaleStyling getScale() {
     return scale;
+  }
+
+  public void setTimer(Timer _timer) {
+    timer = _timer;
+  }
+
+  public Timer getTimer() {
+    return timer;
   }
 
   public String getBg() {

@@ -1,3 +1,4 @@
+String DEFAULT_SCENE = "mainTitle";
 SceneManager manager;
 SceneFactory factory;
 DataGather data;
@@ -14,8 +15,12 @@ void setup() {
     exit();
   }
   setupShapes();
-  manager.setScene("page2");
+  manager.setScene(DEFAULT_SCENE);
 }
+
+void stop() {
+} 
+
 
 @Override
 void draw() {
