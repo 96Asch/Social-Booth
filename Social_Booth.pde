@@ -1,4 +1,4 @@
-String DEFAULT_SCENE = "topicGame";
+String DEFAULT_SCENE = "mainTitle";
 SceneManager manager;
 SceneFactory factory;
 DataGather data;

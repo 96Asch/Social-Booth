@@ -2,7 +2,6 @@
 	"id" : "page4",
 	"timer" : {
 		"styleid" : "mainTimer",
-		"duration" : "20"
 	},
 	"texts" : [
 	{
@@ -11,7 +10,7 @@
 	},
 	{
 		"styleid" : "body",
-		"text" : "Some quick rules before you start... \n\nEvery round you will receive an activity that you may complete within the time frame. Both players take turns doing that activity."
+		"text" : "Some quick rules before you start... \n\nEvery round you will receive an activity that you may complete within 30 seconds. Each activity will be done by one player \n\nThe bar at the bottom of the screen indicates how much time is left. \n\nPress Continue to start!"
 	}],
 	"buttons" : [
 	{
@@ -24,6 +23,6 @@
 		"styleid" : "advbutton",
 		"positionid" : "previous",
 		"text" : "Previous",
-		"onclick" : "page1"
+		"onclick" : "page3"
 	}],
 }

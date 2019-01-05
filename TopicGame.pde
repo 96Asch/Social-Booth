@@ -101,8 +101,8 @@ public class TopicGame extends Node implements Initializable {
     fontName = _fontName; 
     font = createFont(fontName, fontSize, true);
   }
-  
+
   public OffsetStyling getOffset() {
-    return styling;  
+    return styling;
   }
 }

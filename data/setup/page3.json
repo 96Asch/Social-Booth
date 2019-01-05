@@ -1,17 +1,18 @@
 {
 	"id" : "page3",
 	"timer" : {
-		"styleid" : "mainTimer",
-		"duration" : "20"
+		"styleid" : "mainTimer"
 	},
 	"texts" : [
 	{
 		"styleid" : "title",
-		"text" : "Adjusting camera",
+		"text" : "Camera",
 	},
 	{
 		"styleid" : "body",
-		"text" : "Adjusting camera... \nPlease stand in front of the camera"
+		"text" : "Nice to meet you! \nIn order to evaluate your common traits, we will keep track of your facial expressions using this camera. \n\nIf you can see the rectangle appearing on your face then we are all set!",
+		"width" : "width/2",
+		"fontsize" : 15
 	}],
 	"buttons" : [
 	{
