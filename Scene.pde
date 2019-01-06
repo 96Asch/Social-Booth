@@ -68,12 +68,8 @@ class Scene extends BaseScene {
     if (click != null)
       click.onClick();
     for (int i = 0; i < nodes.size(); ++i) {
-      if (nodes.get(i) instanceof Button) {
-        ((Button) nodes.get(i)).onClick();
-        data.gather(dataNodes);
-      } else if (nodes.get(i) instanceof Scale) {
-        ((Scale) nodes.get(i)).onClick();
-      }
+       nodes.get(i).onClick();
     }
+     data.gather(dataNodes);
   }
 }

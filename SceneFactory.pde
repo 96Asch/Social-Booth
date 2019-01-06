@@ -264,7 +264,6 @@ class SceneFactory {
         styling = style.getSubtitle();
         break;
       case "mainGameCounter":
-        print("f");
         styling = style.getGameCounter();
         break;
       default:  
@@ -446,6 +445,10 @@ class SceneFactory {
       for (int i = 0; i < topics.size(); ++i) {
         scene.addNode(createTopicGame(topics.getJSONObject(i)));
       }
+    }
+
+    if (!json.isNull("mouthGame")) {
+      scene.addNode(createMouthGame(json.getJSONObject("mouthGame")));
     }
 
     if (!json.isNull("onclick")) {
@@ -638,6 +641,18 @@ class SceneFactory {
     return t;
   }
 
+  private MouthGame createMouthGame(JSONObject json) {
+    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in mouthGame");
+    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in mouthGame");
+    if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in mouthGame");
+    if (json.isNull("height")) throw new JSONNotFoundException("{height} field not found in mouthGame");
+    int x = (convertMeasurement(json.getString("posX")));   
+    int y = (convertMeasurement(json.getString("posY")));   
+    int w = (convertMeasurement(json.getString("width")));   
+    int h = (convertMeasurement(json.getString("height"))); 
+    return new MouthGame(x, y, w, h);
+  }
+
   //////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////// HELPER FUNCTIONS  ////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -692,7 +707,7 @@ class SceneFactory {
           }
         };
       case "decNumGames":
-         return new ClickEvent(onclick) {
+        return new ClickEvent(onclick) {
           public void onClick() {
             SceneManager.INSTANCE.decrementNumGames();
           }
@@ -710,6 +725,14 @@ class SceneFactory {
         return new ClickEvent(split[1]) {
           public void onClick() {
             data.setShouldGather(true);
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      case "scaleGatherAgain" :
+        return new ClickEvent(split[1]) {
+          public void onClick() {
+            data.setShouldGather(true);
+            data.setShouldPrepare(true);
             SceneManager.INSTANCE.setScene(id);
           }
         };

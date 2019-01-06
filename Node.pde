@@ -63,6 +63,10 @@ class Node {
   public void removeStyle() {
     style = null; 
   }
+  
+  public void onClick() {
+    
+  }
 
   public boolean isInBounds(int _x, int _y) {
     return (x < _x && _x < x + w)

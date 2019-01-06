@@ -11,8 +11,8 @@
 			"source" : "logo.svg",
 			"posX" : "0",
 			"posY" : "0",
-			"width" : "width/1",
-			"height" : "height/2",
+			"width" : "width",
+			"height" : "height/1.5",
 		}
 	],
 	"onclick" : "page1"

@@ -17,7 +17,7 @@
 		"styleid" : "advbutton",
 		"positionid" : "continue",
 		"text" : "Continue",
-		"onclick" : "scaleGather@page2-2"
+		"onclick" : "scaleGatherAgain@page2-2"
 	},
 	{
 		"styleid" : "advbutton",
