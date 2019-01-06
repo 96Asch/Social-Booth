@@ -1,21 +1,21 @@
 {
 	"id" : "topicGame",
-	
+
 	"timer" : {
 		"duration" : "30",
-		"onTimer" : "mainTitle"
+		"onTimer" : "gameOver"
 	},
-	
+
 	"timerBar" : {
 		"styleid" : "gameTimerBar"
 	},
-	
+
 	"texts" : [
 	{
 		"styleid" : "title",
 		"text" : "Tell a story using these subjects!",
 	}],
-	
+
 	"buttons" : [
 	{
 		"styleid" : "advbutton",
@@ -23,8 +23,8 @@
 		"posY" : "height/1.35",
 		"width" : "width/15",
 		"height" : "height/15",
-		"text" : "+",
-		"onclick" : "incNumGames",
+		"text" : "-",
+		"onclick" : "decNumGames",
 		"offset" : {
 			"offsetX" : -10,
 			"offsetY" : 5,
@@ -38,8 +38,8 @@
 		"posY" : "height/1.35",
 		"width" : "width/15",
 		"height" : "height/15",
-		"text" : "-",
-		"onclick" : "decNumGames",
+		"text" : "+",
+		"onclick" : "incNumGames",
 		"offset" : {
 			"offsetX" : -10,
 			"offsetY" : 5,
@@ -47,13 +47,13 @@
 			"offsetH" : 0
 		}
 	}],
-	
+
 	"gameCounter" :
 	{
 		"styleid" : "mainGameCounter"
 	},
-	
-	"topicGame" : 
+
+	"topicGame" :
 	[
 	{
 		"bg" : "label1.svg",

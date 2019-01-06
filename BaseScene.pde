@@ -26,6 +26,8 @@ abstract class BaseScene {
  
  abstract public void draw();
  
+ abstract public void reset();
+ 
  public void onMouseClicked() {};
 
  public void onMouseDragged() {};

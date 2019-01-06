@@ -1,4 +1,5 @@
-import java.util.Random; //<>//
+import java.util.Random; //<>// //<>//
+import java.util.Map;
 
 public enum SceneManager {
   INSTANCE;
@@ -7,6 +8,7 @@ public enum SceneManager {
   private HashMap<String, BaseScene> scenes;
   private ArrayList<String> games;
   private String current;
+  private String countDown;
   private int sceneFrameCount;
   private int fps;
   private boolean changeScene;
@@ -25,7 +27,7 @@ public enum SceneManager {
     changeScene = false;
     inGameMode = false;
     gameCount = 0;
-    numberGames = 2;
+    numberGames = 4;
     sameGameCount = 0;
   }
 
@@ -34,6 +36,9 @@ public enum SceneManager {
       scenes.put(_scene.getId(), _scene);
       if (_scene.getId().contains("Game")) {
         games.add(_scene.getId());
+      }
+      if (_scene.getId().contains("CountDown")) {
+        countDown = _scene.getId();
       }
     }
   }
@@ -46,8 +51,9 @@ public enum SceneManager {
 
   public void setScene(String _id) {
     if (inGameMode) {
-      current = getRandomGame();
-      gameCount++;
+      current = getNextSceneGame();
+      if (current != countDown)
+        ScoreManager.INSTANCE.addPlayedGame(current);
       if (gameCount >= numberGames)
         inGameMode = false;
     } else if (_id != null && scenes.containsKey(_id)) {
@@ -101,6 +107,15 @@ public enum SceneManager {
       ++sceneFrameCount;
   }
 
+  private String getNextSceneGame() {
+    if (current != countDown)
+      return countDown;  
+    else {
+      gameCount++;
+      return getRandomGame();
+    }
+  }
+
   private String getRandomGame() {
     int r = rand.nextInt(games.size())+1;
     String nextGame = games.get(r-1); 
@@ -133,6 +148,16 @@ public enum SceneManager {
       numberGames--;
     else
       inGameMode = false;
+  }
+
+  public void reset() {
+    inGameMode = false;
+    changeScene = false;
+    numberGames = 4;
+    gameCount = 0;
+    sameGameCount = 0;
+    for (Map.Entry me : scenes.entrySet())
+      ((BaseScene) me.getValue()).reset();
   }
 
   class SceneNotFoundException extends RuntimeException {

@@ -1,34 +1,34 @@
 {
 	"id" : "mouthGame",
-	
+
 	"timer" : {
 		"duration" : "30",
-		"onTimer" : "mainTitle"
+		"onTimer" : "gameOver"
 	},
-	
+
 	"timerBar" : {
 		"styleid" : "gameTimerBar"
 	},
-	
+
 	"texts" : [
 	{
 		"styleid" : "title",
 		"text" : "Shut as many mouths as you can!",
 	}],
-	
-	
+
+
 	"gameCounter" :
 	{
 		"styleid" : "mainGameCounter"
 	},
-	
+
 	"mouthGame" : {
 		"posX" : "width/20",
 		"posY" : "height/6",
 		"width" : "width/1.1",
 		"height" : "height/1.8"
 	},
-	
+
 		"buttons" : [
 	{
 		"styleid" : "advbutton",
@@ -36,8 +36,8 @@
 		"posY" : "height/1.35",
 		"width" : "width/15",
 		"height" : "height/15",
-		"text" : "+",
-		"onclick" : "incNumGames",
+		"text" : "-",
+		"onclick" : "decNumGames",
 		"offset" : {
 			"offsetX" : -10,
 			"offsetY" : 5,
@@ -51,8 +51,8 @@
 		"posY" : "height/1.35",
 		"width" : "width/15",
 		"height" : "height/15",
-		"text" : "-",
-		"onclick" : "decNumGames",
+		"text" : "+",
+		"onclick" : "incNumGames",
 		"offset" : {
 			"offsetX" : -10,
 			"offsetY" : 5,

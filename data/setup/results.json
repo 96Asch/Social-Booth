@@ -1,0 +1,51 @@
+{
+	"id" : "result",
+	"timer" : {
+		"styleid" : "mainTimer",
+	},
+	"texts" : [
+	{
+		"styleid" : "title",
+		"text" : "Congratulations!",
+	},
+	{
+		"styleid" : "subtitle",
+    "posY" : "height/5",
+    "width" : "width",
+		"text" : "Your highest common trait is: ",
+    "offset" : {
+      "offsetX" : 0,
+      "offsetY" : 50,
+      "offsetW" : 0,
+      "offsetH" : 0
+    }
+	}
+],
+
+"score" :  [
+  {
+    "styleid" : "title",
+    "posX" : "width/4",
+    "posY" : "height/1.8",
+    "width" : "width/2",
+    "height" : "height/10",
+    "fontsize" : "50",
+    "font" : "masque"
+  }
+],
+
+"buttons" : [
+{
+  "styleid" : "advbutton",
+  "positionid" : "continue",
+  "text" : "Back to title",
+  "onclick" : "reset@mainTitle"
+},
+{
+  "styleid" : "advbutton",
+  "positionid" : "previous",
+  "text" : "Detailed Results",
+  "onclick" : "detailedResult"
+}],
+
+}

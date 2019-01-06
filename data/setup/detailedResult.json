@@ -1,0 +1,40 @@
+{
+	"id" : "detailedResult",
+	"timer" : {
+		"styleid" : "mainTimer",
+	},
+	"texts" : [
+	{
+		"styleid" : "title",
+		"text" : "Detailed Results",
+	},
+	{
+		"styleid" : "body",
+		"text" : "Expression that was most clear during each game: ",
+    "offset" : {
+      "offsetX" : 0,
+      "offsetY" : 50,
+      "offsetW" : 0,
+      "offsetH" : 0
+    }
+	}
+],
+
+"detailedScore" : {
+  "posX" : "width/6",
+  "posY" : "height/3",
+  "width" : "width/1.2",
+  "height" : "height/12",
+  "fontsize" : 30,
+  "font" : "HighlandGothicLightFLF.ttf"
+},
+
+"buttons" : [
+{
+  "styleid" : "advbutton",
+  "positionid" : "previous",
+  "text" : "Back to Results",
+  "onclick" : "result"
+}],
+
+}

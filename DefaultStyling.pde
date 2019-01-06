@@ -1,11 +1,12 @@
 class DefaultStyling {
 
   private String bg;
-  private TextStyling title, body, subtitle, gameCounter;
+  private TextStyling title, body, subtitle, gameCounter, score;
   private ButtonStyling button;
   private ScaleStyling scale;
   private Timer timer;
   private TimerBarStyling timerBar;
+  private CountDownStyling countDown;
 
   DefaultStyling() {
     title = new TextStyling();
@@ -14,7 +15,9 @@ class DefaultStyling {
     gameCounter = new TextStyling();
     button = new ButtonStyling();
     scale = new ScaleStyling();
+    countDown = new CountDownStyling();
     timerBar = new TimerBarStyling();
+    score = new TextStyling();
   }
 
   public TextStyling getTitle() {
@@ -33,6 +36,10 @@ class DefaultStyling {
     return gameCounter;
   }
 
+  public TextStyling getScore() {
+    return score;
+  }
+
   public ButtonStyling getAdvButton() {
     return button;
   }
@@ -43,6 +50,10 @@ class DefaultStyling {
 
   public TimerBarStyling getTimerBar() {
     return timerBar;
+  }
+
+  public CountDownStyling getCountDown() {
+    return countDown;
   }
 
   public void setTimer(Timer _timer) {
@@ -99,6 +110,27 @@ private class NodeStyling {
 
   public void setStyle(Style _style) {
     style = _style;
+  }
+}
+
+private class CountDownStyling extends NodeStyling {
+  protected int fontSize;
+  protected String font;
+
+  public int getFontSize() {
+    return fontSize;
+  }
+
+  public void setFontSize(int _f) {
+    fontSize = _f;
+  }
+
+  public String getFont() {
+    return font;
+  }
+
+  public void setFont(String _font) {
+    font = _font;
   }
 }
 

@@ -1,7 +1,7 @@
-public class MouthGame extends Node implements Initializable{
+public class MouthGame extends Node implements Initializable {
 
   Timer timer;
-  int numberMouths = 1;
+  int numberMouths = 25;
   int numClicked;
   String MouthImg = "mouth.png";
   String bgImg = "Anti.jpg";
@@ -24,14 +24,14 @@ public class MouthGame extends Node implements Initializable{
       mouthCollection[i] = new Mouth(MouthImg, 
         random(x, w), random(y, h), 
         w/8, h/8, 
-        random  (5, 10), random (5, 10),
-        x, y,
+        random  (5, 10), random (5, 10), 
+        x, y, 
         w, h);
     }
   }
-  
+
   @Override
-  public void onInit() {
+    public void onInit() {
     for ( int i = 0; i < mouthCollection.length; i++) {
       mouthCollection[i].reset( random(x, w), random(y, h), 
         w/8, h/8, 
@@ -61,7 +61,7 @@ public class MouthGame extends Node implements Initializable{
     strokeWeight(7);
     stroke(255);
     noFill();
-    rect(x,y,w,h);
+    rect(x, y, w, h);
   }
 
   @Override

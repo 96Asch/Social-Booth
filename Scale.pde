@@ -138,6 +138,12 @@ public class Scale extends Node implements IDatafiable {
   public int getValue() {
     return value+1;
   }
+  
+  @Override
+  public void reset() {
+      value = -1;
+      onUnit = -1;
+  }
 
   @Override
     public String getId() {

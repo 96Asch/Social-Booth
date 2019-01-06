@@ -1,0 +1,9 @@
+#Attributes on separate lines
+Humor
+Cooperativeness
+Expressiveness
+Empathy
+Imaginative
+Consideration
+Joyful
+Energetic

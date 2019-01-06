@@ -20,7 +20,7 @@ class Scene extends BaseScene {
     if (timer != null)
       timer.start();
     for (Node node : nodes) {
-      if(node instanceof Initializable) {
+      if (node instanceof Initializable) {
         ((Initializable) node).onInit();
       }
     }
@@ -61,15 +61,20 @@ class Scene extends BaseScene {
   public void setTimer(Timer _timer) {
     timer = _timer;
   }
-
+  
+  @Override
+  public void reset() {
+    for(Node node : nodes)
+      node.reset();
+  }
 
   @Override
     public void onMouseClicked() {
     if (click != null)
       click.onClick();
-    for (int i = 0; i < nodes.size(); ++i) {
-       nodes.get(i).onClick();
+    for (Node node : nodes) {
+      node.onClick();
     }
-     data.gather(dataNodes);
+    data.gather(dataNodes);
   }
 }

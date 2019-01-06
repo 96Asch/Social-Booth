@@ -10,14 +10,14 @@
 	},
 	{
 		"styleid" : "body",
-		"text" : "Some quick rules before you start... \n\nEvery round you will receive an activity that you may complete within 30 seconds. Each activity will be done by one player \n\nThe bar at the bottom of the screen indicates how much time is left. \n\nPress Continue to start!"
+		"text" : "Some quick rules before you start... \n\nEvery round you will receive an activity that you may complete within 30 seconds. Each activity will be done by one player after which you will swap. \n\nThe bar at the bottom of the screen indicates how much time is left. You can always add games using the + and - buttons above the timebar. \n\nPress Continue to start!"
 	}],
 	"buttons" : [
 	{
 		"styleid" : "advbutton",
 		"positionid" : "continue",
 		"text" : "Continue",
-		"onclick" : "playGames@topicGame"
+		"onclick" : "playGames@gameCountDown"
 	},
 	{
 		"styleid" : "advbutton",

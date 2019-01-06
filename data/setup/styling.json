@@ -44,15 +44,15 @@
 
 	"body" : {
 		"posX" : "width/10",
-		"posY" : "height/4",
+		"posY" : "height/5",
 		"width" : "width/1.1",
 		"height" : "height/2",
-		"fontsize" : 25,
+		"fontsize" : 20,
 		"offset" : {
-			"offsetX" : 90,
+			"offsetX" : 0,
 			"offsetY" : 0,
-			"offsetW" : -170,
-			"offsetH" : 80
+			"offsetW" : 0,
+			"offsetH" : 0
 		},
 		"alignX" : "left",
 		"alignY" : "baseline",
@@ -82,13 +82,30 @@
 		"width" : "width/1.2",
 		"height" : "height/10"
 	},
-	
+
 	"mainTimer" : {
 		"duration" : "10:00",
 		"onTimer" : "mainTitle"
 	},
-	
+
 	"mainGameCounter" : {
+		"posX" : "width/1.67",
+		"posY" : "height/1.35",
+		"width" : "width/5",
+		"height" : "height/15",
+		"fontsize" : 25,
+		"offset" : {
+			"offsetX" : -5,
+			"offsetY" : 0,
+			"offsetW" : 0,
+			"offsetH" : 0
+		},
+		"alignX" : "center",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf"
+	},
+
+	"mainScore" : {
 		"posX" : "width/1.67",
 		"posY" : "height/1.35",
 		"width" : "width/5",
@@ -118,5 +135,14 @@
 		"descWidth" : "width/8",
 		"descHeight" : "150"
 	},
-	
+
+	"mainCountDown" : {
+		"posX" : "width/4",
+		"posY" : "height/4",
+		"width" : "width/2",
+		"height" : "height/2",
+		"fontsize" : 80,
+		"font" : "HighlandGothicLightFLF.ttf"
+	}
+
 }

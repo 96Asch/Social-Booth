@@ -1,0 +1,19 @@
+{
+	"id" : "gameCountDown",
+	"timer" : {
+		"styleid" : "mainTimer",
+		"duration" : "5",
+		"onTimer" : "gameOver"
+	},
+	"texts" : [
+		{
+			"styleid" : "title",
+			"text" : "Get Ready!",
+		}
+	],
+	"countdown" : {
+		"styleid" : "mainCountDown"
+	}
+
+
+}

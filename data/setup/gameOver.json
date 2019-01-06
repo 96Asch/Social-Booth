@@ -1,0 +1,21 @@
+{
+	"id" : "gameOver",
+	"timer" : {
+		"styleid" : "mainTimer",
+    "duration" : "10",
+    "onTimer" : "stopCamera@result"
+	},
+	"texts" : [
+	{
+		"styleid" : "title",
+		"text" : "Game Over",
+	},
+	{
+		"styleid" : "subtitle",
+		"posY" : "height/2",
+		"text" : "Well done! \nPlease wait until we finish collecting your game data.",
+		"fontsize" : 40,
+		"font" : "HighlandGothicLightFLF.ttf"
+	}],
+
+}

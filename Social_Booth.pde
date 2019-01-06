@@ -1,17 +1,32 @@
+import gab.opencv.OpenCV;
+import processing.video.Capture;
+
 String DEFAULT_SCENE = "mainTitle";
 SceneManager manager;
 SceneFactory factory;
+ScoreManager scoreManager;
 DataGather data;
+Capture video;
+OpenCV opencv;  
 
+int dispWidth = 1080;
+int dispHeight = 720;
+int camWidth = 640;
+int camHeight = 480;
 
 void setup() {
   size(1080, 720);
+  video = new Capture(this, 640, 480);
+  opencv = new OpenCV(this, 640, 480);
+  opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
   manager = SceneManager.INSTANCE;
+  scoreManager = ScoreManager.INSTANCE;
+  scoreManager.loadAttributes(createReader("setup/attributes.txt"));
   factory = new SceneFactory();
   manager.setFps(60);
   data = new DataGather();
   frameRate(manager.getFps());
-  if(!factory.createScenesFromDescription("setup/structure.txt")) {
+  if (!factory.createScenesFromDescription("setup/structure.txt")) {
     println("Error initializing!");
     exit();
   }
@@ -19,58 +34,58 @@ void setup() {
   manager.setScene(DEFAULT_SCENE);
 }
 
-void stop() {
-} 
-
+void captureEvent(Capture c) {
+  c.read();
+}
 
 @Override
-void draw() {
+  void draw() {
   manager.manageDraw();
 }
 
 @Override
-void mouseClicked() {
+  void mouseClicked() {
   manager.getCurrentScene().onMouseClicked();
 }
 
 @Override
-void mouseDragged() {
+  void mouseDragged() {
   manager.getCurrentScene().onMouseDragged();
 }
 
 @Override
-void mouseEntered() {
+  void mouseEntered() {
   manager.getCurrentScene().onMouseEntered();
 }
 
 @Override
-void mouseExited() {
+  void mouseExited() {
   manager.getCurrentScene().onMouseExited();
 }
 
 @Override
-void mouseMoved() {
+  void mouseMoved() {
   manager.getCurrentScene().onMouseMoved();
 }
 
 @Override
-void mousePressed() {
+  void mousePressed() {
   manager.getCurrentScene().onMousePressed();
 }
 
 @Override
-void mouseReleased() {
+  void mouseReleased() {
   manager.getCurrentScene().onMouseReleased();
 }
 
 @Override
-void mouseWheel() {
+  void mouseWheel() {
   manager.getCurrentScene().onMouseWheel();
 }
 
 @Override
-void keyPressed() {
-  if(key == 'q') {
+  void keyPressed() {
+  if (key == 'q') {
     data.save();
     exit();
   }
@@ -78,11 +93,11 @@ void keyPressed() {
 }
 
 @Override
-void keyReleased() {
+  void keyReleased() {
   manager.getCurrentScene().onKeyReleased();
 }
 
 @Override
-void keyTyped() {
+  void keyTyped() {
   manager.getCurrentScene().onKeyTyped();
 }

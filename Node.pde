@@ -32,6 +32,10 @@ class Node {
     }
   }
   
+  public void reset() {
+    
+  }
+  
   public void setPosX(int _x) {
     x = _x < 0 ? width + _x : _x;
   }

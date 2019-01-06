@@ -129,6 +129,8 @@ class SceneFactory {
     parseTimer(json.getJSONObject("mainTimer"));
     parseTimerBar(json.getJSONObject("gameTimerBar"), style.getTimerBar());
     parseTextStyling(json.getJSONObject("mainGameCounter"), style.getGameCounter());
+    parseCountDownStyling(json.getJSONObject("mainCountDown"), style.getCountDown());
+    parseTextStyling(json.getJSONObject("mainScore"), style.getScore());
   }
 
   private void parseAdvButtonStyling(JSONObject json, ButtonStyling styling) {
@@ -247,6 +249,17 @@ class SceneFactory {
       styling.getOffset().setOffsetH(json.getInt("offsetH"));
   }
 
+  private void parseCountDownStyling(JSONObject json, CountDownStyling styling) {
+    if (json == null) throw new JSONNotFoundException("json was null in parseCountDownStyling");
+    if (json.isNull("fontsize")) throw new JSONNotFoundException("{fontsize} field not found in countDownStyling");
+    if (json.isNull("font")) throw new JSONNotFoundException("{font} field not found in countDownStyling");
+
+    parseDefaultPositionStyling(json, styling.getPosition());
+    parseDefaultDimensionStyling(json, styling);
+    styling.setFontSize(json.getInt("fontsize"));
+    styling.setFont(json.getString("font"));
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////////////
 
   private void setTextToDefault(JSONObject json, TextBody text) {
@@ -266,6 +279,9 @@ class SceneFactory {
       case "mainGameCounter":
         styling = style.getGameCounter();
         break;
+      case "mainScore":
+        styling = style.getScore();
+        break;
       default:  
         return;
       }
@@ -276,7 +292,7 @@ class SceneFactory {
       text.setHeight(styling.getHeight());
       text.setFontSize(styling.getFontSize());
       text.setFont(styling.getFont());
-      text.setStyle(styling.getStyle());
+      text.setStyle(styling.getStyle()); 
       text.setAlignX(styling.getAlignX());
       text.setAlignY(styling.getAlignY());
       text.setOffset(styling.getOffset());
@@ -379,6 +395,26 @@ class SceneFactory {
     }
   }
 
+  private void setCountDownToDefault(JSONObject json, CountDown count) {
+    if (!json.isNull("styleid")) {
+      String styleid = json.getString("styleid");
+      CountDownStyling t;
+      switch(styleid) {
+      case "mainCountDown":
+        t = style.getCountDown();
+        break;
+      default:
+        return;
+      }
+      count.setPosX(t.getPosition().getPosX());
+      count.setPosY(t.getPosition().getPosY());
+      count.setWidth(t.getWidth());
+      count.setHeight(t.getHeight());
+      count.setFontSize(t.getFontSize());
+      count.setFont(t.getFont());
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////// BUILDERS  ////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -386,6 +422,7 @@ class SceneFactory {
   private Scene createScene(String file) {
     if (file == null || file.isEmpty()) return null;
     json = loadJSONObject(file);
+
     if (json.isNull("id")) throw new JSONNotFoundException("{id} field not found in scene");
     String id = json.getString("id");
     Scene scene = new Scene(id);
@@ -449,6 +486,27 @@ class SceneFactory {
 
     if (!json.isNull("mouthGame")) {
       scene.addNode(createMouthGame(json.getJSONObject("mouthGame")));
+    }
+
+    if (!json.isNull("camera")) {
+      scene.addNode(createCamera(json.getJSONObject("camera")));
+    }
+
+    if (!json.isNull("countdown")) {
+      CountDown count = createCountDown(json.getJSONObject("countdown"));
+      count.setTimer(scene.getTimer());
+      scene.addNode(count);
+    }
+
+    if (!json.isNull("score")) {
+      JSONArray score = json.getJSONArray("score");
+      for (int i = 0; i < score.size(); ++i) {
+        scene.addNode(createScore(score.getJSONObject(i)));
+      }
+    }
+
+    if (!json.isNull("detailedScore")) {
+      scene.addNode(createDetailedScore(json.getJSONObject("detailedScore")));
     }
 
     if (!json.isNull("onclick")) {
@@ -642,6 +700,7 @@ class SceneFactory {
   }
 
   private MouthGame createMouthGame(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createMouthGame");
     if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in mouthGame");
     if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in mouthGame");
     if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in mouthGame");
@@ -652,6 +711,81 @@ class SceneFactory {
     int h = (convertMeasurement(json.getString("height"))); 
     return new MouthGame(x, y, w, h);
   }
+
+  private Camera createCamera(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createCamera");
+    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in mouthGame");
+    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in mouthGame");
+    if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in mouthGame");
+    if (json.isNull("height")) throw new JSONNotFoundException("{height} field not found in mouthGame");
+    int x = (convertMeasurement(json.getString("posX")));   
+    int y = (convertMeasurement(json.getString("posY")));   
+    int w = (convertMeasurement(json.getString("width")));   
+    int h = (convertMeasurement(json.getString("height"))); 
+    return new Camera(x, y, w, h);
+  }
+
+  private CountDown createCountDown(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createCountDown");
+    CountDown count = new CountDown(0, 0, 0, 0);
+    setCountDownToDefault(json, count);
+    if (!json.isNull("posX"))
+      count.setPosX(convertMeasurement(json.getString("posX")));
+    if (!json.isNull("posY"))
+      count.setPosY(convertMeasurement(json.getString("posY")));
+    if (!json.isNull("width"))
+      count.setWidth(convertMeasurement(json.getString("width")));
+    if (!json.isNull("height"))
+      count.setHeight(convertMeasurement(json.getString("height")));
+    return count;
+  }
+
+  private Score createScore(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createScore");
+    Score g = new Score(0, 0, 0, 0);
+    setTextToDefault(json, g);
+
+    if (!json.isNull("posX"))
+      g.setPosX(convertMeasurement(json.getString("posX")));
+    if (!json.isNull("posY"))
+      g.setPosY(convertMeasurement(json.getString("posY")));
+    if (!json.isNull("width"))
+      g.setWidth(convertMeasurement(json.getString("width")));
+    if (!json.isNull("height"))
+      g.setHeight(convertMeasurement(json.getString("height")));
+    if (!json.isNull("fontsize"))
+      g.setFontSize(json.getInt("fontsize"));
+    if (!json.isNull("font"))
+      g.setFont(json.getString("font"));
+    if (!json.isNull("alignX"))
+      g.setAlignX(convertAlignX(json.getString("alignX")));
+    if (!json.isNull("alignY"))
+      g.setAlignX(convertAlignY(json.getString("alignY")));
+    if (!json.isNull("offset"))
+      setOffset(json.getJSONObject("offset"), g);
+
+    return g;
+  }
+
+  private DetailedScore createDetailedScore(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createDetailedScore");
+    if (json.isNull("posX")) throw new JSONNotFoundException("{posX} field not found in styling");
+    if (json.isNull("posY")) throw new JSONNotFoundException("{posY} field not found in styling");
+    if (json.isNull("width")) throw new JSONNotFoundException("{width} field not found in styling");
+    if (json.isNull("height")) throw new JSONNotFoundException("{height} field not found in styling");
+    if (json.isNull("fontsize")) throw new JSONNotFoundException("{bg} field not found in styling");
+    if (json.isNull("font")) throw new JSONNotFoundException("{file} field not found in styling");
+    int x = (convertMeasurement(json.getString("posX")));   
+    int y = (convertMeasurement(json.getString("posY")));   
+    int w = (convertMeasurement(json.getString("width")));   
+    int h = (convertMeasurement(json.getString("height"))); 
+    DetailedScore d = new DetailedScore(x, y, w, h);
+    d.setFontSize(json.getInt("fontsize"));
+    d.setFont(json.getString("font"));
+
+    return d;
+  }
+
 
   //////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////// HELPER FUNCTIONS  ////////////////////////////////////
@@ -725,6 +859,13 @@ class SceneFactory {
         return new ClickEvent(split[1]) {
           public void onClick() {
             data.setShouldGather(true);
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      case "reset": 
+        return new ClickEvent(split[1]) {
+          public void onClick() {
+            SceneManager.INSTANCE.reset();
             SceneManager.INSTANCE.setScene(id);
           }
         };
@@ -827,14 +968,35 @@ private Timer buildTimer(String duration, String onTimer) {
 }
 
 private TimerEvent createTimerEvent(String onTimer) {
-  switch(onTimer) {
-  default:
-    return new TimerEvent(onTimer) {
-      public void onTimeUp() {
-        SceneManager.INSTANCE.setScene(id);
-      }
-    };
+  String[] split = onTimer.split("@");
+  if (split.length == 1) {
+    switch(split[0]) {
+    default:
+      return new TimerEvent(split[0]) {
+        public void onTimeUp() {
+          SceneManager.INSTANCE.setScene(id);
+        }
+      };
+    }
+  } else if (split.length == 2) {
+    switch(split[0] ) {
+    case "playGames": 
+      return new TimerEvent(split[1]) {
+        public void onTimeUp() {
+          SceneManager.INSTANCE.setInGameMode(true);
+          SceneManager.INSTANCE.setScene(id);
+        }
+      };
+    case "stopCamera":
+      return new TimerEvent(split[1]) {
+        public void onTimeUp() {
+          video.stop();
+          SceneManager.INSTANCE.setScene(id);
+        }
+      };
+    }
   }
+  return null;
 }
 
 private int convertTimeToMillis(String time) {

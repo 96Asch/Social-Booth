@@ -12,3 +12,7 @@ page3.json
 page4.json
 topicGame.json
 mouthGame.json
+countDown.json
+gameOver.json
+results.json
+detailedResult.json
