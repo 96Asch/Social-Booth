@@ -1,0 +1,54 @@
+{
+	"id" : "page2-2",
+	"timer" : {
+		"styleid" : "mainTimer"
+	},
+	"texts" : [
+	{
+		"styleid" : "title",
+		"text" : "Player 2, How would you describe yourself?",
+	},
+	{
+		"styleid" : "body",
+		"text" : "On a scale of one to five, I am..."
+	}],
+	"buttons" : [
+	{
+		"styleid" : "advbutton",
+		"positionid" : "continue",
+		"text" : "Continue",
+		"onclick" : "scaleGather@page3"
+	},
+	{
+		"styleid" : "advbutton",
+		"positionid" : "previous",
+		"text" : "Previous",
+		"onclick" : "page2-1"
+	}],
+	"scales" : [
+		{
+			"styleid" : "centerScale",
+			"descript" : "Outgoing",
+			"number" : 5,
+			"posY" : "height/2-75",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Judging",
+			"number" : 5,
+			"posY" : "height/2",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Rational",
+			"number" : 5,
+			"posY" : "height/2+75",
+		},
+		{
+			"styleid" : "centerScale",
+			"descript" : "Emotional",
+			"number" : 5,
+			"posY" : "height/2+150",
+		}
+	]
+}

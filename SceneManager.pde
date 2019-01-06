@@ -1,23 +1,39 @@
-public enum SceneManager { //<>//
+import java.util.Random; //<>//
+
+public enum SceneManager {
   INSTANCE;
 
+  private Random rand;
   private HashMap<String, BaseScene> scenes;
+  private ArrayList<String> games;
   private String current;
   private int sceneFrameCount;
   private int fps;
   private boolean changeScene;
+  private boolean inGameMode;
+  private int numberGames, gameCount;
+  
 
   private SceneManager() {
+    rand = new Random();
     scenes = new HashMap();
+    games = new ArrayList();
     current = null;
     sceneFrameCount = 0;
     fps = 0;
     changeScene = false;
+    inGameMode = false;
+    gameCount = 0;
+    numberGames = 2;
   }
 
   public void addScene(BaseScene _scene) {
     if (_scene != null) {
       scenes.put(_scene.getId(), _scene);
+      if(_scene.getId().contains("Game"))  {
+        print("d");
+        games.add(_scene.getId());
+      }
     }
   }
 
@@ -28,14 +44,19 @@ public enum SceneManager { //<>//
   }
 
   public void setScene(String _id) {
-    if (_id != null && scenes.containsKey(_id)) {
-      print("setScene");
+    if (inGameMode) {
+      current = getRandomGame();
+      gameCount++;
+      if(gameCount >= numberGames)
+        inGameMode = false;
+    }
+    else if (_id != null && scenes.containsKey(_id)) {
       current = _id;
-      sceneFrameCount = 0;
-      changeScene = true;
     } else {
       throw new SceneNotFoundException("Scene not found!");
     }
+     sceneFrameCount = 0;
+     changeScene = true;
   }
 
   public int getSceneFrameCount() {
@@ -44,6 +65,10 @@ public enum SceneManager { //<>//
 
   public void setSceneFrameCount(int _count) {
     sceneFrameCount = _count;
+  }
+  
+  public void setInGameMode(boolean inMode) {
+    inGameMode = inMode;  
   }
 
   public int getFps() {
@@ -74,6 +99,28 @@ public enum SceneManager { //<>//
     }
     if (!changeScene)
       ++sceneFrameCount;
+  }
+  
+  private String getRandomGame() {
+    int r = rand.nextInt(games.size())+1;
+    return games.get(r-1);  
+  }
+  
+  public int getNumberGames() {
+    return numberGames;  
+  }
+  
+  public int getGameCount() {
+    return gameCount;  
+  }
+  
+  public void incrementNumGames() {
+    numberGames++;  
+  }
+  
+  public void decrementNumGames() {
+     if(numberGames > gameCount+1)
+        numberGames--;   
   }
 
   class SceneNotFoundException extends RuntimeException {

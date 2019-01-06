@@ -1,13 +1,13 @@
 class TextBody extends Node{
  
   
-  private String text; 
-  private int fontSize;
-  private String fontName;
-  private PFont font;
-  private int alignX;
-  private int alignY;
-  private OffsetStyling offset;
+  protected String text; 
+  protected int fontSize;
+  protected String fontName;
+  protected PFont font;
+  protected int alignX;
+  protected int alignY;
+  protected OffsetStyling offset;
   
   TextBody(String _text, final int x, final int y, 
            final int w, final int h, final int _fontSize) 

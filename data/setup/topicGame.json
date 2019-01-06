@@ -3,7 +3,7 @@
 	
 	"timer" : {
 		"duration" : "30",
-		"onTimer" : "topicGame"
+		"onTimer" : "mainTitle"
 	},
 	
 	"timerBar" : {
@@ -16,6 +16,42 @@
 		"text" : "Tell a story using these subjects!",
 	}],
 	
+	"buttons" : [
+	{
+		"styleid" : "advbutton",
+		"posX" : "width/1.25",
+		"posY" : "height/1.35",
+		"width" : "width/15",
+		"height" : "height/15",
+		"text" : "+",
+		"onclick" : "incNumGames",
+		"offset" : {
+			"offsetX" : -10,
+			"offsetY" : 5,
+			"offsetW" : 0,
+			"offsetH" : 0
+		}
+	},
+	{
+		"styleid" : "advbutton",
+		"posX" : "width/1.15",
+		"posY" : "height/1.35",
+		"width" : "width/15",
+		"height" : "height/15",
+		"text" : "-",
+		"onclick" : "decNumGames",
+		"offset" : {
+			"offsetX" : -10,
+			"offsetY" : 5,
+			"offsetW" : 0,
+			"offsetH" : 0
+		}
+	}],
+	
+	"gameCounter" :
+	{
+		"styleid" : "mainGameCounter"
+	},
 	
 	"topicGame" : 
 	[

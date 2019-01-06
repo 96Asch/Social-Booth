@@ -54,6 +54,13 @@ class SceneFactory {
     }
     );
     style.setTimer(timer);
+
+    style.getGameCounter().setStyle(new Style() {
+      public void setStyle(int x, int y, int w, int h) {
+        drawBox(x, y, w, h, -20);
+      }
+    }
+    );
   }
 
   public boolean createScenesFromDescription(String desc) {
@@ -109,6 +116,9 @@ class SceneFactory {
     if (json.isNull("body")) throw new JSONNotFoundException("{body} field not found in styling") ;
     if (json.isNull("subtitle")) throw new JSONNotFoundException("{subtitle} field not found in styling") ;
     if (json.isNull("centerScale")) throw new JSONNotFoundException("{centerScale} field not found in styling") ;
+    if (json.isNull("mainTimer")) throw new JSONNotFoundException("{mainTimer} field not found in styling") ;
+    if (json.isNull("gameTimerBar")) throw new JSONNotFoundException("{gameTimerBar} field not found in styling") ;
+    if (json.isNull("mainGameCounter")) throw new JSONNotFoundException("{mainGameCounter} field not found in styling") ;
 
     style.setBg(json.getString("bg"));
     parseAdvButtonStyling(json.getJSONObject("advbutton"), style.getAdvButton());
@@ -118,6 +128,7 @@ class SceneFactory {
     parseScaleStyling(json.getJSONObject("centerScale"), style.getScale());
     parseTimer(json.getJSONObject("mainTimer"));
     parseTimerBar(json.getJSONObject("gameTimerBar"), style.getTimerBar());
+    parseTextStyling(json.getJSONObject("mainGameCounter"), style.getGameCounter());
   }
 
   private void parseAdvButtonStyling(JSONObject json, ButtonStyling styling) {
@@ -251,6 +262,10 @@ class SceneFactory {
         break;
       case "subtitle":
         styling = style.getSubtitle();
+        break;
+      case "mainGameCounter":
+        print("f");
+        styling = style.getGameCounter();
         break;
       default:  
         return;
@@ -390,6 +405,10 @@ class SceneFactory {
       }
     }
 
+    if (!json.isNull("gameCounter")) {
+      scene.addNode(createGameCounter(json.getJSONObject("gameCounter")));
+    }
+
     if (!json.isNull("buttons")) {
       JSONArray buttons = json.getJSONArray("buttons");
       for (int i = 0; i < buttons.size(); ++i) {
@@ -469,6 +488,33 @@ class SceneFactory {
       setOffset(json.getJSONObject("offset"), textBody);
 
     return textBody;
+  }
+
+  private GameCounter createGameCounter(JSONObject json) {
+    if (json == null) throw new JSONNotFoundException("json was null in createGameCounter");
+    GameCounter g = new GameCounter(0, 0, 0, 0);
+    setTextToDefault(json, g);
+
+    if (!json.isNull("posX"))
+      g.setPosX(convertMeasurement(json.getString("posX")));
+    if (!json.isNull("posY"))
+      g.setPosY(convertMeasurement(json.getString("posY")));
+    if (!json.isNull("width"))
+      g.setWidth(convertMeasurement(json.getString("width")));
+    if (!json.isNull("height"))
+      g.setHeight(convertMeasurement(json.getString("height")));
+    if (!json.isNull("fontsize"))
+      g.setFontSize(json.getInt("fontsize"));
+    if (!json.isNull("font"))
+      g.setFont(json.getString("font"));
+    if (!json.isNull("alignX"))
+      g.setAlignX(convertAlignX(json.getString("alignX")));
+    if (!json.isNull("alignY"))
+      g.setAlignX(convertAlignY(json.getString("alignY")));
+    if (!json.isNull("offset"))
+      setOffset(json.getJSONObject("offset"), g);
+
+    return g;
   }
 
 
@@ -636,9 +682,21 @@ class SceneFactory {
   private ClickEvent createClickEvent(JSONObject json) {
     if (json.isNull("onclick")) throw new JSONNotFoundException("{onclick} field not found in button");
     String onclick = json.getString("onclick");
-    String[] split = onclick.split("-");
+    String[] split = onclick.split("@");
     if (split.length == 1) {
       switch(onclick) {
+      case "incNumGames": 
+        return new ClickEvent(onclick) {
+          public void onClick() {
+            SceneManager.INSTANCE.incrementNumGames();
+          }
+        };
+      case "decNumGames":
+         return new ClickEvent(onclick) {
+          public void onClick() {
+            SceneManager.INSTANCE.decrementNumGames();
+          }
+        };
       default:
         return new ClickEvent(onclick) {
           public void onClick() {
@@ -652,6 +710,13 @@ class SceneFactory {
         return new ClickEvent(split[1]) {
           public void onClick() {
             data.setShouldGather(true);
+            SceneManager.INSTANCE.setScene(id);
+          }
+        };
+      case "playGames" :
+        return new ClickEvent(split[1]) {
+          public void onClick() {
+            SceneManager.INSTANCE.setInGameMode(true);
             SceneManager.INSTANCE.setScene(id);
           }
         };

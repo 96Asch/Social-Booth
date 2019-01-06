@@ -1,7 +1,7 @@
 class DefaultStyling {
 
   private String bg;
-  private TextStyling title, body, subtitle;
+  private TextStyling title, body, subtitle, gameCounter;
   private ButtonStyling button;
   private ScaleStyling scale;
   private Timer timer;
@@ -11,6 +11,7 @@ class DefaultStyling {
     title = new TextStyling();
     body = new TextStyling();
     subtitle = new TextStyling();
+    gameCounter = new TextStyling();
     button = new ButtonStyling();
     scale = new ScaleStyling();
     timerBar = new TimerBarStyling();
@@ -26,6 +27,10 @@ class DefaultStyling {
 
   public TextStyling getSubtitle() {
     return subtitle;
+  }
+
+  public TextStyling getGameCounter() {
+    return gameCounter;
   }
 
   public ButtonStyling getAdvButton() {

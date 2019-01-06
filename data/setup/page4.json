@@ -17,7 +17,7 @@
 		"styleid" : "advbutton",
 		"positionid" : "continue",
 		"text" : "Continue",
-		"onclick" : "topicGame"
+		"onclick" : "playGames@topicGame"
 	},
 	{
 		"styleid" : "advbutton",

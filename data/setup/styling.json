@@ -18,10 +18,10 @@
 			"posY" : "height/1.1",
 		},
 		"offset" : {
-			"offsetX" : 5,
-			"offsetY" : 5,
-			"offsetW" : 5,
-			"offsetH" : 5
+			"offsetX" : 0,
+			"offsetY" : 0,
+			"offsetW" : 0,
+			"offsetH" : 0
 		}
 	},
 
@@ -86,6 +86,23 @@
 	"mainTimer" : {
 		"duration" : "10:00",
 		"onTimer" : "mainTitle"
+	},
+	
+	"mainGameCounter" : {
+		"posX" : "width/1.67",
+		"posY" : "height/1.35",
+		"width" : "width/5",
+		"height" : "height/15",
+		"fontsize" : 25,
+		"offset" : {
+			"offsetX" : -5,
+			"offsetY" : 0,
+			"offsetW" : 0,
+			"offsetH" : 0
+		},
+		"alignX" : "center",
+		"alignY" : "center",
+		"font" : "HighlandGothicLightFLF.ttf"
 	},
 
 

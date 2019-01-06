@@ -5,3 +5,7 @@ public static class Util {
     return list == null ? EMPTY_LIST : list;
   }
 }
+
+int randInt(int start, int end) {
+  return int(random(start, end));  
+}

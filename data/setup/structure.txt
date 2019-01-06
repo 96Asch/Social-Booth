@@ -6,7 +6,8 @@ styling.json
 
 mainTitle.json
 page1.json
-page2.json
+page2-1.json
+page2-2.json
 page3.json
 page4.json
 topicGame.json

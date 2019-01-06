@@ -10,7 +10,7 @@
 		},
 		{
 			"styleid" : "body",
-			"text" : "Welcome to Social Booth, \n\nSocial Booth is part of a social experiment where we try to encourage social interaction through fun activities. By using facial recognition we will measure common traits between you and your conversation partner. \n\nBut first, tell us a little bit about yourself...",
+			"text" : "Welcome to Social Booth, \n\nSocial Booth is part of a social experiment where we try to encourage social interaction through fun activities. By using facial recognition we will measure common traits between you and your conversation partner. \n\nBut first, tell us a little bit about yourselves...",
 		}
 	],
 	"buttons" : [
@@ -18,7 +18,7 @@
 			"styleid" : "advbutton",
 			"positionid" : "continue",
 			"text" : "Continue",
-			"onclick" : "page2"
+			"onclick" : "page2-1"
 		},
 	]
 }
