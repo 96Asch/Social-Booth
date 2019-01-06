@@ -546,7 +546,7 @@ class SceneFactory {
     if (!json.isNull("alignY"))
       textBody.setAlignX(convertAlignY(json.getString("alignY")));
     if (!json.isNull("offset"))
-      setOffset(json.getJSONObject("offset"), textBody);
+      textBody.setOffset(getOffset(json.getJSONObject("offset")));
 
     return textBody;
   }
@@ -573,7 +573,7 @@ class SceneFactory {
     if (!json.isNull("alignY"))
       g.setAlignX(convertAlignY(json.getString("alignY")));
     if (!json.isNull("offset"))
-      setOffset(json.getJSONObject("offset"), g);
+      g.setOffset(getOffset(json.getJSONObject("offset")));
 
     return g;
   }
@@ -605,7 +605,7 @@ class SceneFactory {
     if (!json.isNull("alignY"))
       button.setAlignX(convertAlignY(json.getString("alignY")));
     if (!json.isNull("offset"))
-      setOffset(json.getJSONObject("offset"), button);
+      g.setOffset(getOffset(json.getJSONObject("offset")));
     return button;
   }
 
@@ -690,7 +690,7 @@ class SceneFactory {
     t.setHeight(convertMeasurement(json.getString("height")));  
     t.setBg(json.getString("bg"));
     t.setTopicsFile(json.getString("file"));
-    setOffset(json.getJSONObject("offset"), t);
+    t.setOffset(getOffset(json.getJSONObject("offset")));
     if (!json.isNull("fontsize"))
       t.setFontSize(json.getInt("fontsize"));
     if (!json.isNull("font")) {
@@ -762,7 +762,7 @@ class SceneFactory {
     if (!json.isNull("alignY"))
       g.setAlignX(convertAlignY(json.getString("alignY")));
     if (!json.isNull("offset"))
-      setOffset(json.getJSONObject("offset"), g);
+      g.setOffset(getOffset(json.getJSONObject("offset")));
 
     return g;
   }
@@ -792,40 +792,18 @@ class SceneFactory {
   //////////////////////////////////////////////////////////////////////////////////////////
 
 
-  private void setOffset(JSONObject json, Button button) {
+  private OffsetStyling getOffset(JSONObject json) {
     if (json == null) throw new JSONNotFoundException("json was null in setOffset");
+    OffsetStyling offset = new OffsetStyling();
     if (!json.isNull("offsetX"))
-      button.getOffset().setOffsetX(json.getInt("offsetX"));
+      offset.setOffsetX(json.getInt("offsetX"));
     if (!json.isNull("offsetY"))
-      button.getOffset().setOffsetY(json.getInt("offsetY"));
+      offset.setOffsetY(json.getInt("offsetY"));
     if (!json.isNull("offsetW"))
-      button.getOffset().setOffsetW(json.getInt("offsetW"));
+      offset.setOffsetW(json.getInt("offsetW"));
     if (!json.isNull("offsetH"))
-      button.getOffset().setOffsetH(json.getInt("offsetH"));
-  }
-
-  private void setOffset(JSONObject json, TopicGame game) {
-    if (json == null) throw new JSONNotFoundException("json was null in setOffset");
-    if (!json.isNull("offsetX"))
-      game.getOffset().setOffsetX(json.getInt("offsetX"));
-    if (!json.isNull("offsetY"))
-      game.getOffset().setOffsetY(json.getInt("offsetY"));
-    if (!json.isNull("offsetW"))
-      game.getOffset().setOffsetW(json.getInt("offsetW"));
-    if (!json.isNull("offsetH"))
-      game.getOffset().setOffsetH(json.getInt("offsetH"));
-  }
-
-  private void setOffset(JSONObject json, TextBody text) {
-    if (json == null) throw new JSONNotFoundException("json was null in setOffset");
-    if (!json.isNull("offsetX"))
-      text.getOffset().setOffsetX(json.getInt("offsetX"));
-    if (!json.isNull("offsetY"))
-      text.getOffset().setOffsetY(json.getInt("offsetY"));
-    if (!json.isNull("offsetW"))
-      text.getOffset().setOffsetW(json.getInt("offsetW"));
-    if (!json.isNull("offsetH"))
-      text.getOffset().setOffsetH(json.getInt("offsetH"));
+      offset.setOffsetH(json.getInt("offsetH"));
+    return offset;
   }
 
   private ClickEvent createClickEvent(JSONObject json) {

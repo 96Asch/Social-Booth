@@ -2,7 +2,7 @@
 	"id" : "gameCountDown",
 	"timer" : {
 		"styleid" : "mainTimer",
-		"duration" : "5",
+		"duration" : "3",
 		"onTimer" : "gameOver"
 	},
 	"texts" : [

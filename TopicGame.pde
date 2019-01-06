@@ -105,4 +105,8 @@ public class TopicGame extends Node implements Initializable {
   public OffsetStyling getOffset() {
     return styling;
   }
+  
+  public void setOffset(OffsetStyling _styling) {
+     styling = _styling; 
+  }
 }

@@ -49,9 +49,9 @@
 		"height" : "height/2",
 		"fontsize" : 20,
 		"offset" : {
-			"offsetX" : 0,
-			"offsetY" : 0,
-			"offsetW" : 0,
+			"offsetX" : 100,
+			"offsetY" : 50,
+			"offsetW" : -200,
 			"offsetH" : 0
 		},
 		"alignX" : "left",

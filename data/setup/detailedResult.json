@@ -11,12 +11,7 @@
 	{
 		"styleid" : "body",
 		"text" : "Expression that was most clear during each game: ",
-    "offset" : {
-      "offsetX" : 0,
-      "offsetY" : 50,
-      "offsetW" : 0,
-      "offsetH" : 0
-    }
+    
 	}
 ],
 

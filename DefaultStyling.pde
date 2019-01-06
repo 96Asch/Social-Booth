@@ -347,6 +347,10 @@ public class OffsetStyling {
   public void setOffsetH(int _h) {
     offsetH = _h;
   }
+  
+  public String toString() {
+   return String.format("OffsetStyling {{x : %d}, {y : %d}, {w : %d}, {h : %d}}", getOffsetX(), getOffsetY(), getOffsetW(), getOffsetH()); 
+  }
 }
 
 public class PositionStyling {

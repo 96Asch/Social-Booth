@@ -12,9 +12,15 @@
 	},
 	{
 		"styleid" : "body",
-		"text" : "Nice to meet you! \nIn order to evaluate your common traits, we will keep track of your facial expressions using this camera. \nPlease stand both in front of the camera. If you can see the rectangle appearing on both of your faces then we are all set!\nPress Continue to move on.",
+		"text" : "Nice to meet you! \nIn order to evaluate your common traits, we will keep track of your facial expressions using this camera. \n\nPlease stand both in front of the camera. If you can see the rectangle appearing on both of your faces then we are all set!\n\nPress Continue to move on.",
 		"width" : "width/2",
-		"fontsize" : 15
+		"fontsize" : 20,
+		"offset" : {
+			"offsetX" : 20,
+			"offsetY" : 20,
+			"offsetW" : -80,
+			"offsetH" : 0
+		}
 	}],
 
 	"camera" : {
@@ -35,6 +41,6 @@
 		"styleid" : "advbutton",
 		"positionid" : "previous",
 		"text" : "Previous",
-		"onclick" : "page2"
+		"onclick" : "page2-2"
 	}],
 }

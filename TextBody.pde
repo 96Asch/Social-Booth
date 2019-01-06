@@ -34,7 +34,7 @@ class TextBody extends Node{
     if(font != null)
       textFont(font);
     textAlign(alignX, alignY);
-    text(text, x+offset.getOffsetX(), y+offset.getOffsetY(), w+offset.getOffsetW(), h+offset.getOffsetH());  
+    text(text, x+offset.getOffsetX(), y+offset.getOffsetY(), w+offset.getOffsetW(), h+offset.getOffsetH()); 
     textAlign(LEFT, BASELINE);
     noFill();
   }

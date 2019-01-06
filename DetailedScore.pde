@@ -17,7 +17,6 @@ public class DetailedScore extends Node implements Initializable {
     fill(255);
     if (font != null)
       textFont(font);
-    println(text.size());
     for (int i = 0; i < text.size(); ++i) {
       text(text.get(i), x, y + (i * h), w, h);
     }

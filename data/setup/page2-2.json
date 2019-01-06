@@ -30,25 +30,25 @@
 			"styleid" : "centerScale",
 			"descript" : "Outgoing",
 			"number" : 5,
-			"posY" : "height/2-75",
+			"posY" : "height/2-100",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Judging",
 			"number" : 5,
-			"posY" : "height/2",
+			"posY" : "height/2-25",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Rational",
 			"number" : 5,
-			"posY" : "height/2+75",
+			"posY" : "height/2+50",
 		},
 		{
 			"styleid" : "centerScale",
 			"descript" : "Emotional",
 			"number" : 5,
-			"posY" : "height/2+150",
+			"posY" : "height/2+125",
 		}
 	]
 }
