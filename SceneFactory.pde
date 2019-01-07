@@ -605,7 +605,7 @@ class SceneFactory {
     if (!json.isNull("alignY"))
       button.setAlignX(convertAlignY(json.getString("alignY")));
     if (!json.isNull("offset"))
-      g.setOffset(getOffset(json.getJSONObject("offset")));
+      button.setOffset(getOffset(json.getJSONObject("offset")));
     return button;
   }
 
